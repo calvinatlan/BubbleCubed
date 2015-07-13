@@ -24,6 +24,7 @@ public class Player : MonoBehaviour {
 	private bool rotating = false;
 	private float rStartTime;
 	private Quaternion rTarget;
+	private Vector3 cAxis;
 
 	// Use this for initialization
 	void Start () {
@@ -60,22 +61,30 @@ public class Player : MonoBehaviour {
 		if (!rotating){
 			if (Input.GetAxis ("Rotate FB") > 0){
 				rot = transform.rotation;
-				rTarget = rot * Quaternion.Euler(90f,0f,0f);
+				cAxis = Quaternion.Inverse (rot) * Vector3.right;
+				rTarget = Quaternion.AngleAxis(90, cAxis);
+				rTarget = rot * rTarget;
 				rStartTime = Time.time;
 				StartCoroutine("lRotate");
 			}else if (Input.GetAxis ("Rotate FB") < 0){
 				rot = transform.rotation;
-				rTarget = rot * Quaternion.Euler(-90f,0f,0f);
+				cAxis = Quaternion.Inverse (rot) * Vector3.left;
+				rTarget = Quaternion.AngleAxis(90, cAxis);
+				rTarget = rot * rTarget;
 				rStartTime = Time.time;
 				StartCoroutine("lRotate");
 			}else if (Input.GetAxis ("Rotate LR") > 0){
 				rot = transform.rotation;
-				rTarget = rot * Quaternion.Euler(0f,90f,0f);
+				cAxis = Quaternion.Inverse (rot) * Vector3.up;
+				rTarget = Quaternion.AngleAxis(90, cAxis);
+				rTarget = rot * rTarget;
 				rStartTime = Time.time;
 				StartCoroutine("lRotate");
 			}else if (Input.GetAxis ("Rotate LR") < 0){
 				rot = transform.rotation;
-				rTarget = rot * Quaternion.Euler(0f,-90f,0f);
+				cAxis = Quaternion.Inverse (rot) * Vector3.down;
+				rTarget = Quaternion.AngleAxis(90, cAxis);
+				rTarget = rot * rTarget;
 				rStartTime = Time.time;
 				StartCoroutine("lRotate");
 			}
