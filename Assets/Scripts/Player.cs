@@ -13,6 +13,8 @@ public class Player : MonoBehaviour {
 	private enum lanes {Left, Middle, Right};
 	private int curLane = (int)lanes.Middle;
 
+	
+
 	//Variables used for positional interpolation
 	private Vector3 pos;
 	private Vector3 pTarget;
@@ -24,7 +26,6 @@ public class Player : MonoBehaviour {
 	private bool rotating = false;
 	private float rStartTime;
 	private Quaternion rTarget;
-	private Vector3 cAxis;
 
 	// Use this for initialization
 	void Start () {
@@ -61,30 +62,22 @@ public class Player : MonoBehaviour {
 		if (!rotating){
 			if (Input.GetAxis ("Rotate FB") > 0){
 				rot = transform.rotation;
-				cAxis = Quaternion.Inverse (rot) * Vector3.right;
-				rTarget = Quaternion.AngleAxis(90, cAxis);
-				rTarget = rot * rTarget;
+				rTarget = rot * Quaternion.Euler(90f,0f,0f);
 				rStartTime = Time.time;
 				StartCoroutine("lRotate");
 			}else if (Input.GetAxis ("Rotate FB") < 0){
 				rot = transform.rotation;
-				cAxis = Quaternion.Inverse (rot) * Vector3.left;
-				rTarget = Quaternion.AngleAxis(90, cAxis);
-				rTarget = rot * rTarget;
+				rTarget = rot * Quaternion.Euler(-90f,0f,0f);
 				rStartTime = Time.time;
 				StartCoroutine("lRotate");
 			}else if (Input.GetAxis ("Rotate LR") > 0){
 				rot = transform.rotation;
-				cAxis = Quaternion.Inverse (rot) * Vector3.up;
-				rTarget = Quaternion.AngleAxis(90, cAxis);
-				rTarget = rot * rTarget;
+				rTarget = rot * Quaternion.Euler(0f,90f,0f);
 				rStartTime = Time.time;
 				StartCoroutine("lRotate");
 			}else if (Input.GetAxis ("Rotate LR") < 0){
 				rot = transform.rotation;
-				cAxis = Quaternion.Inverse (rot) * Vector3.down;
-				rTarget = Quaternion.AngleAxis(90, cAxis);
-				rTarget = rot * rTarget;
+				rTarget = rot * Quaternion.Euler(0f,-90f,0f);
 				rStartTime = Time.time;
 				StartCoroutine("lRotate");
 			}
