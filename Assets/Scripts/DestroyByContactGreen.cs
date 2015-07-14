@@ -12,16 +12,18 @@ public class DestroyByContactGreen : MonoBehaviour {
 		if (other.tag == "Green Bubble") 
 		{
 			Destroy (other.gameObject);
-
+			this.transform.parent.GetComponent<Player>().count++;
 		}
 
 		else if (other.tag == "Blue Bubble" ) 
 		{
+			this.transform.parent.GetComponent<Player>().count = 0;
 			Instantiate(explosionB, other.transform.position, other.transform.rotation);
 			Destroy (other.gameObject);
 		}
 		else if (other.tag == "Red Bubble" ) 
 		{
+			this.transform.parent.GetComponent<Player>().count = 0;
 			Instantiate(explosionR, other.transform.position, other.transform.rotation);
 			Destroy (other.gameObject);
 		}

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class Player : MonoBehaviour {
@@ -26,15 +27,21 @@ public class Player : MonoBehaviour {
 	private Quaternion rTarget;
 	private Vector3 cAxis;
 
+	public int count;
+	public Text countText;
+
 	// Use this for initialization
 	void Start () {
-	
+		count = 0;
+		SetCount ();
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		Movement ();
 		Rotate();
+		SetCount ();
 	}
 
 	//This code checks if the player wants to move left or right, and makes sure they are not already moving
@@ -115,4 +122,22 @@ public class Player : MonoBehaviour {
 		}
 		rotating = false;
 	}
+
+	void SetCount(){
+		countText.text = "Count: " + count.ToString ();
+	}
+
+	public int Count 
+	{
+		get 
+		{ 
+			return count; 
+		}
+		set 
+		{
+			count = value; 
+		}
+	}
+
+
 }
