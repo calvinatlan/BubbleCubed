@@ -15,6 +15,7 @@ public class GameController : MonoBehaviour
 	public GameObject bubbleB;
 	public float spawnWait;
 	public float waveWait;
+	static int score = 0;
 	
 	void Start ()
 	{
