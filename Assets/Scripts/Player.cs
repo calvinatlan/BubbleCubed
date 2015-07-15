@@ -44,28 +44,16 @@ public class Player : MonoBehaviour {
 		SetCount ();
 	}
 
-	//This code checks if the player wants to move left or right, and makes sure they are not already moving
-	//Then it calls a coroutine which moves the player smoothly one lane over
+//Made this code simpler, calls 1 function
 	void Movement(){
-		if (!moving) {
-			if (Input.GetAxis ("Horizontal") > 0 && curLane != (int)lanes.Right) {
-				pos = transform.position;
-				pTarget = new Vector3 (pos.x + mD, pos.y, pos.z);
-				mStartTime = Time.time;
-				StartCoroutine ("Move");
-				curLane++;
-			} else if (Input.GetAxis ("Horizontal") < 0 && curLane != (int)lanes.Left) {
-				pos = transform.position;
-				pTarget = new Vector3 (pos.x - mD, pos.y, pos.z);
-				mStartTime = Time.time;
-				StartCoroutine ("Move");
-				curLane--;
-			}
+		if (Input.GetAxis ("Horizontal") > 0 ) {
+			moveTo (0);
+		} else if (Input.GetAxis ("Horizontal") < 0) {
+			moveTo (1);
 		}
 	}
 
 	void Rotate(){
-		if (!rotating){
 			if (Input.GetAxis ("Rotate FB") > 0){
 				moveTo (1);
 			}else if (Input.GetAxis ("Rotate FB") < 0){
@@ -75,8 +63,6 @@ public class Player : MonoBehaviour {
 			}else if (Input.GetAxis ("Rotate LR") < 0){
 				moveTo (0);
 			}
-
-		}
 	}
 
 
@@ -103,44 +89,60 @@ public class Player : MonoBehaviour {
 		rotating = false;
 	}
 
+	//This code checks if the player wants to move left or right, and makes sure they are not already moving
+	//Then it calls a coroutine which moves the player smoothly one lane over
+
 	//m is 0 for left, 1 for right
 	public void moveTo(int m){
-
+		if (!moving) {
+			if (m == 1 && curLane != (int)lanes.Right) {
+				pos = transform.position;
+				pTarget = new Vector3 (pos.x + mD, pos.y, pos.z);
+				mStartTime = Time.time;
+				StartCoroutine ("Move");
+				curLane++;
+			} else if (m == 0 && curLane != (int)lanes.Left) {
+				pos = transform.position;
+				pTarget = new Vector3 (pos.x - mD, pos.y, pos.z);
+				mStartTime = Time.time;
+				StartCoroutine ("Move");
+				curLane--;
+			}
+		}
 	}
 
 	//r is 0 for left, 1 for up, 2 for right, 3 for down
 	public void rotateTo(int r){
-		if (r == 0) {
-			rot = transform.rotation;
-			cAxis = Quaternion.Inverse (rot) * Vector3.down;
-			rTarget = Quaternion.AngleAxis(90, cAxis);
-			rTarget = rot * rTarget;
-			rStartTime = Time.time;
-			StartCoroutine("lRotate");
-		}
-		else if (r == 1) {
-			rot = transform.rotation;
-			cAxis = Quaternion.Inverse (rot) * Vector3.right;
-			rTarget = Quaternion.AngleAxis (90, cAxis);
-			rTarget = rot * rTarget;
-			rStartTime = Time.time;
-			StartCoroutine ("lRotate");
-		}
-		else if (r == 2) { 
-			rot = transform.rotation;
-			cAxis = Quaternion.Inverse (rot) * Vector3.up;
-			rTarget = Quaternion.AngleAxis(90, cAxis);
-			rTarget = rot * rTarget;
-			rStartTime = Time.time;
-			StartCoroutine("lRotate");
-		}
-		else if (r == 3) {
-			rot = transform.rotation;
-			cAxis = Quaternion.Inverse (rot) * Vector3.left;
-			rTarget = Quaternion.AngleAxis(90, cAxis);
-			rTarget = rot * rTarget;
-			rStartTime = Time.time;
-			StartCoroutine("lRotate");
+		if (!rotating) {
+			if (r == 0) {
+				rot = transform.rotation;
+				cAxis = Quaternion.Inverse (rot) * Vector3.down;
+				rTarget = Quaternion.AngleAxis (90, cAxis);
+				rTarget = rot * rTarget;
+				rStartTime = Time.time;
+				StartCoroutine ("lRotate");
+			} else if (r == 1) {
+				rot = transform.rotation;
+				cAxis = Quaternion.Inverse (rot) * Vector3.right;
+				rTarget = Quaternion.AngleAxis (90, cAxis);
+				rTarget = rot * rTarget;
+				rStartTime = Time.time;
+				StartCoroutine ("lRotate");
+			} else if (r == 2) { 
+				rot = transform.rotation;
+				cAxis = Quaternion.Inverse (rot) * Vector3.up;
+				rTarget = Quaternion.AngleAxis (90, cAxis);
+				rTarget = rot * rTarget;
+				rStartTime = Time.time;
+				StartCoroutine ("lRotate");
+			} else if (r == 3) {
+				rot = transform.rotation;
+				cAxis = Quaternion.Inverse (rot) * Vector3.left;
+				rTarget = Quaternion.AngleAxis (90, cAxis);
+				rTarget = rot * rTarget;
+				rStartTime = Time.time;
+				StartCoroutine ("lRotate");
+			}
 		}
 	}
 
