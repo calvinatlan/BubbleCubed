@@ -47,9 +47,9 @@ public class Player : MonoBehaviour {
 //Made this code simpler, calls moveTo function
 	void Movement(){
 		if (Input.GetAxis ("Horizontal") > 0 ) {
-			moveTo (0);
-		} else if (Input.GetAxis ("Horizontal") < 0) {
 			moveTo (1);
+		} else if (Input.GetAxis ("Horizontal") < 0) {
+			moveTo (0);
 		}
 	}
 
