@@ -44,7 +44,7 @@ public class Player : MonoBehaviour {
 		SetCount ();
 	}
 
-//Made this code simpler, calls 1 function
+//Made this code simpler, calls moveTo function
 	void Movement(){
 		if (Input.GetAxis ("Horizontal") > 0 ) {
 			moveTo (0);
@@ -53,45 +53,21 @@ public class Player : MonoBehaviour {
 		}
 	}
 
+//Made this code simpler, calls rotate function
 	void Rotate(){
 			if (Input.GetAxis ("Rotate FB") > 0){
-				moveTo (1);
+				rotateTo (1);
 			}else if (Input.GetAxis ("Rotate FB") < 0){
-				moveTo (3);
+				rotateTo (3);
 			}else if (Input.GetAxis ("Rotate LR") > 0){
-				moveTo (2);
+				rotateTo (2);
 			}else if (Input.GetAxis ("Rotate LR") < 0){
-				moveTo (0);
+				rotateTo (0);
 			}
 	}
 
-
-	IEnumerator Move(){
-		moving = true;
-		float track = 0f;
-		while (track < 1f) {
-			track = (Time.time - mStartTime) / speed;
-			transform.position = Vector3.Slerp (pos, pTarget, track);
-			yield return null;
-		}
-		moving = false;
-	}
-
-	IEnumerator lRotate(){
-		print ("rotating");
-		rotating = true;
-		float track = 0f;
-		while (track < 1f){
-			track = (Time.time - rStartTime) / rSpeed;
-			transform.rotation = Quaternion.Lerp (rot, rTarget, track);
-			yield return null;
-		}
-		rotating = false;
-	}
-
 	//This code checks if the player wants to move left or right, and makes sure they are not already moving
-	//Then it calls a coroutine which moves the player smoothly one lane over
-
+	//Then it calls a coroutine which moves the player over using lerp
 	//m is 0 for left, 1 for right
 	public void moveTo(int m){
 		if (!moving) {
@@ -111,6 +87,8 @@ public class Player : MonoBehaviour {
 		}
 	}
 
+	//Figures out correct axis accounting for current rotation
+	//Starts a coroutine that spins the cube 90 degrees around that axis using lerp
 	//r is 0 for left, 1 for up, 2 for right, 3 for down
 	public void rotateTo(int r){
 		if (!rotating) {
@@ -144,6 +122,31 @@ public class Player : MonoBehaviour {
 				StartCoroutine ("lRotate");
 			}
 		}
+	}
+
+	//Coroutine that uses lerp to translate the cube
+	IEnumerator Move(){
+		moving = true;
+		float track = 0f;
+		while (track < 1f) {
+			track = (Time.time - mStartTime) / speed;
+			transform.position = Vector3.Slerp (pos, pTarget, track);
+			yield return null;
+		}
+		moving = false;
+	}
+
+	//Coroutine that uses lerp to rotate the cube
+	IEnumerator lRotate(){
+		print ("rotating");
+		rotating = true;
+		float track = 0f;
+		while (track < 1f){
+			track = (Time.time - rStartTime) / rSpeed;
+			transform.rotation = Quaternion.Lerp (rot, rTarget, track);
+			yield return null;
+		}
+		rotating = false;
 	}
 
 	void SetCount(){

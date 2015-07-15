@@ -27,12 +27,16 @@ public class TouchController : MonoBehaviour {
 			return;
 		}
 
+		//Get the touch, it's movement vector, and the magnitude of that vector
 		Touch t = Input.GetTouch (0);
 		tDel = t.deltaPosition;
 		absMag = Mathf.Sqrt (tDel.magnitude);
 
+		//If the movement is large enough, it's a swipe
 		if (absMag > 5) {
+			//Flag it as not a tap so that the cube doesn't move when you lift your finger up
 			isTap = false;
+			//Figure out what direction the swipe is in
 			if(Mathf.Abs(tDel.x) > Mathf.Abs(tDel.y)){
 				if (tDel.x > 0){
 					p.rotateTo(2);
@@ -47,6 +51,9 @@ public class TouchController : MonoBehaviour {
 				}
 			}
 		}
+		//If the finger is lifted and it was not a swipe, execute this
+		//Left third of the screen moves left, and right third moves right
+		//There is a deadzone in the middle
 		if (t.phase == TouchPhase.Ended && isTap) {
 			if(t.position.x < (Screen.width / 3)){
 				p.moveTo (0);
@@ -56,12 +63,4 @@ public class TouchController : MonoBehaviour {
 		}
 
 	}
-
-//	IEnumerator touchM(Touch t){
-//		while (Input.touchCount != 0) {
-//			t = Input.GetTouch (0);
-//			print (t.phase);
-//			yield return null;
-//		}
-//	}
 }
