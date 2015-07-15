@@ -67,33 +67,13 @@ public class Player : MonoBehaviour {
 	void Rotate(){
 		if (!rotating){
 			if (Input.GetAxis ("Rotate FB") > 0){
-				rot = transform.rotation;
-				cAxis = Quaternion.Inverse (rot) * Vector3.right;
-				rTarget = Quaternion.AngleAxis(90, cAxis);
-				rTarget = rot * rTarget;
-				rStartTime = Time.time;
-				StartCoroutine("lRotate");
+				moveTo (1);
 			}else if (Input.GetAxis ("Rotate FB") < 0){
-				rot = transform.rotation;
-				cAxis = Quaternion.Inverse (rot) * Vector3.left;
-				rTarget = Quaternion.AngleAxis(90, cAxis);
-				rTarget = rot * rTarget;
-				rStartTime = Time.time;
-				StartCoroutine("lRotate");
+				moveTo (3);
 			}else if (Input.GetAxis ("Rotate LR") > 0){
-				rot = transform.rotation;
-				cAxis = Quaternion.Inverse (rot) * Vector3.up;
-				rTarget = Quaternion.AngleAxis(90, cAxis);
-				rTarget = rot * rTarget;
-				rStartTime = Time.time;
-				StartCoroutine("lRotate");
+				moveTo (2);
 			}else if (Input.GetAxis ("Rotate LR") < 0){
-				rot = transform.rotation;
-				cAxis = Quaternion.Inverse (rot) * Vector3.down;
-				rTarget = Quaternion.AngleAxis(90, cAxis);
-				rTarget = rot * rTarget;
-				rStartTime = Time.time;
-				StartCoroutine("lRotate");
+				moveTo (0);
 			}
 
 		}
@@ -121,6 +101,47 @@ public class Player : MonoBehaviour {
 			yield return null;
 		}
 		rotating = false;
+	}
+
+	//m is 0 for left, 1 for right
+	public void moveTo(int m){
+
+	}
+
+	//r is 0 for left, 1 for up, 2 for right, 3 for down
+	public void rotateTo(int r){
+		if (r == 0) {
+			rot = transform.rotation;
+			cAxis = Quaternion.Inverse (rot) * Vector3.down;
+			rTarget = Quaternion.AngleAxis(90, cAxis);
+			rTarget = rot * rTarget;
+			rStartTime = Time.time;
+			StartCoroutine("lRotate");
+		}
+		else if (r == 1) {
+			rot = transform.rotation;
+			cAxis = Quaternion.Inverse (rot) * Vector3.right;
+			rTarget = Quaternion.AngleAxis (90, cAxis);
+			rTarget = rot * rTarget;
+			rStartTime = Time.time;
+			StartCoroutine ("lRotate");
+		}
+		else if (r == 2) { 
+			rot = transform.rotation;
+			cAxis = Quaternion.Inverse (rot) * Vector3.up;
+			rTarget = Quaternion.AngleAxis(90, cAxis);
+			rTarget = rot * rTarget;
+			rStartTime = Time.time;
+			StartCoroutine("lRotate");
+		}
+		else if (r == 3) {
+			rot = transform.rotation;
+			cAxis = Quaternion.Inverse (rot) * Vector3.left;
+			rTarget = Quaternion.AngleAxis(90, cAxis);
+			rTarget = rot * rTarget;
+			rStartTime = Time.time;
+			StartCoroutine("lRotate");
+		}
 	}
 
 	void SetCount(){

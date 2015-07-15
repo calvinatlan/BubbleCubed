@@ -17,3 +17,5 @@ Thumbs.*
 /*.booproj
 /*.fbm
 /*.fbm.meta
+# Android APK
+/*.apk
