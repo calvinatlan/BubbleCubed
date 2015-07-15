@@ -33,7 +33,7 @@ public class Player : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		count = 0;
-		SetCount ();
+		SetCount ();//updatecount
 
 	}
 	
