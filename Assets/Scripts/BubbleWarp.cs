@@ -2,35 +2,34 @@
 using System.Collections;
 
 public class BubbleWarp : MonoBehaviour {
-	public float slope = 0.5f;
-	public float interval = .01f;
-	private Vector3 start;
-	private float smooth = 0.5f;
-	private float tNext = 0f;
-	private float dir = 1f;
-
-
+	private Vector3 scaleS;
+	private Vector3 scaleL;
+	private Vector3 rStart;
+	private Vector3 mini;
+//	private bool rising;
 
 	// Use this for initialization
 
 
 	void Start () {
-		//start = transform.localScale;
+		scaleS = transform.localScale;
+		scaleL = new Vector3 (scaleS.x+.3f, scaleS.y+.3f, scaleS.z+.3f);
+		mini = new Vector3 (0.01f, 0.01f, 0.01f);
+//		rising = true;
+
+		StartCoroutine (changeSize ());
 	}
 
-	// Update is called once per frame
-	void Update () {
-		if (Time.time > tNext) {
-			tNext += interval*(0.5f+Random.value);
-			dir = -dir;
+	IEnumerator changeSize(){
+		while (true) {
+			while (transform.localScale.x < scaleL.x) {
+				transform.localScale += mini;
+				yield return new WaitForSeconds(1/60f);
+			}
+			while (transform.localScale.x > scaleS.x) {
+				transform.localScale -= mini;
+				yield return new WaitForSeconds(1/60f);
+			}
 		}
-		smooth += dir * slope * Time.deltaTime;
-		if (smooth > 1f || smooth < 0.5f) {
-			dir = -dir;
-		}
-		smooth = Mathf.Clamp (smooth, 0f, 0.5f);
-		transform.localScale += new Vector3 (smooth*dir, 0f, 0f);
-
-						
 	}
 }
