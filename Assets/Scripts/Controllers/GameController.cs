@@ -14,9 +14,15 @@ public class GameController : MonoBehaviour
 	public float backgroundLowerGenPointZ;
 	public float startWait;
 	public float bubbleCount;
+
 	public GameObject bubbleR;
 	public GameObject bubbleG;
 	public GameObject bubbleB;
+	public GameObject bubbleDeath;
+	public GameObject bubbleRainbow1;
+	public GameObject bubbleRainbow2;
+	public GameObject bubbleRainbow3;
+
 	public float spawnWait;
 	public float waveWait;
 	//will tie this to speeds so that the tileing is seemless
