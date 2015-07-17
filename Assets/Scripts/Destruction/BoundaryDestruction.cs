@@ -14,5 +14,6 @@ public class BoundaryDestruction : MonoBehaviour {
 	void OnTriggerEnter(Collider other){
 //		print (other);
 		Destroy (other.gameObject);
+
 	}
 }
