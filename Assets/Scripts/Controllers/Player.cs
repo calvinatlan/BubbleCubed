@@ -27,21 +27,30 @@ public class Player : MonoBehaviour {
 	private Quaternion rTarget;
 	private Vector3 cAxis;
 
-	public int count;
+	public float health;
+	public int counts;
+	public int num;
 	public Text countText;
+	public Text healthBar;
 
 	// Use this for initialization
 	void Start () {
-		count = 0;
-		SetCount ();//updatecount
+		counts = 0;
+		health = 100;
+		num = (int)health;
+		counter ();//updatecount
+		healthBarInitial ();
 
 	}
+
 	
 	// Update is called once per frame
 	void Update () {
 		Movement ();
 		Rotate();
-		SetCount ();
+		counter ();
+		health -= Time.deltaTime;
+		healthBarInitial ();
 	}
 
 //Made this code simpler, calls moveTo function
@@ -149,21 +158,16 @@ public class Player : MonoBehaviour {
 		rotating = false;
 	}
 
-	void SetCount(){
-		countText.text = "Count: " + count.ToString ();
+	void counter(){
+		countText.text = "High Streak: " + counts.ToString ();
 	}
 
-	public int Count 
-	{
-		get 
-		{ 
-			return count; 
-		}
-		set 
-		{
-			count = value; 
-		}
+	void healthBarInitial(){
+		num = (int)health;
+		healthBar.text = "Health: " + num.ToString () +"%";
 	}
+
+
 
 
 }
