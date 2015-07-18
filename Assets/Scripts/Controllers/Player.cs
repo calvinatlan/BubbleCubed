@@ -29,13 +29,16 @@ public class Player : MonoBehaviour {
 
 	public float health;
 	public int counts;
+	public int highStreak;
 	public int num;
 	public Text countText;
+	public Text streakText;
 	public Text healthBar;
 
 	// Use this for initialization
 	void Start () {
 		counts = 0;
+		highStreak = counts;
 		health = 100;
 		num = (int)health;
 		counter ();//updatecount
@@ -48,6 +51,7 @@ public class Player : MonoBehaviour {
 	void Update () {
 		Movement ();
 		Rotate();
+		highStreakText ();
 		counter ();
 		health -= Time.deltaTime;
 		healthBarInitial ();
@@ -159,12 +163,33 @@ public class Player : MonoBehaviour {
 	}
 
 	void counter(){
-		countText.text = "High Streak: " + counts.ToString ();
+		countText.text = "Count: " + counts.ToString ();
+	}
+	void highStreakText(){
+		if(counts > highStreak){
+			highStreak = counts;
+		}
+		streakText.text = "High Streak: " + highStreak.ToString();
 	}
 
 	void healthBarInitial(){
 		num = (int)health;
-		healthBar.text = "Health: " + num.ToString () +"%";
+
+		if(health < 0){
+			health = 0;
+			healthBar.text = "Game Over";
+		}
+		else{
+			if (health > 100){
+				health = 100;
+				healthBar.text = "Health: 100%";
+			}
+			else{
+				healthBar.text = "Health: " + num.ToString () +"%";
+			}
+
+		}
+
 	}
 
 
