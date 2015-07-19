@@ -34,17 +34,21 @@ public class Player : MonoBehaviour {
 	public Text countText;
 	public Text streakText;
 	public Text healthBar;
+
+	//variables for audio
 	public AudioClip gameOver;
 	public AudioClip gameStart;
 	private GameObject Cube;
 	private AudioSource music;
 	// Use this for initialization
 	void Start () {
+		//play gameStart music
 		Cube = GameObject.Find("Cube");
 		Cube.AddComponent (typeof(AudioSource));
 		music = GetComponent<AudioSource>();
 		music.clip = gameStart;
 		music.Play();
+
 		counts = 0;
 		highStreak = counts;
 		health = 100;
@@ -186,6 +190,8 @@ public class Player : MonoBehaviour {
 		if (health < 0) {
 			health = 0;
 			healthBar.text = "Game Over";
+			//if game music is still gameStart music
+			//change it to gameOver music
 			if(music.clip != gameOver){
 				music.Stop();
 				music.clip = gameOver;

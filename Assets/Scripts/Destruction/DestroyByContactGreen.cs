@@ -11,6 +11,8 @@ public class DestroyByContactGreen : MonoBehaviour {
 
 		if (other.tag == "Green Bubble") 
 		{
+			AudioSource audio = GetComponent<AudioSource>();
+			audio.Play();
 			Destroy (other.gameObject);
 			this.transform.parent.GetComponent<Player>().counts++;//here
 			this.transform.parent.GetComponent<Player>().health+=3;//here

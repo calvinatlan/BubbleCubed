@@ -12,6 +12,8 @@ public class DestroyByContactBlue : MonoBehaviour {
 	{
 		if (other.tag == "Blue Bubble") 
 		{
+			AudioSource audio = GetComponent<AudioSource>();
+			audio.Play();
 			Destroy (other.gameObject);
 			this.transform.parent.GetComponent<Player>().counts++;
 			this.transform.parent.GetComponent<Player>().health+=3;//here
