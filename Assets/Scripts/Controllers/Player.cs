@@ -35,6 +35,9 @@ public class Player : MonoBehaviour {
 	public Text streakText;
 	public Text healthBar;
 
+	public Slider healthSlider; 
+	public float startingHealth = 100;
+
 	//variables for audio
 	public AudioClip gameOver;
 	public AudioClip gameStart;
@@ -51,7 +54,7 @@ public class Player : MonoBehaviour {
 
 		counts = 0;
 		highStreak = counts;
-		health = 100;
+		health = startingHealth;
 		num = (int)health;
 		counter ();//updatecount
 		healthBarInitial ();
@@ -203,10 +206,12 @@ public class Player : MonoBehaviour {
 		else{
 			if (health > 100){
 				health = 100;
+				healthSlider.value = health;
 				healthBar.text = "Health: 100%";
 			}
 			else{
 				healthBar.text = "Health: " + num.ToString () +"%";
+				healthSlider.value = health;
 			}
 
 		}
