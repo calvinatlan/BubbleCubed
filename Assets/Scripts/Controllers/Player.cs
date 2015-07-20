@@ -27,6 +27,8 @@ public class Player : MonoBehaviour {
 	private Quaternion rTarget;
 	private Vector3 cAxis;
 
+	public int totalCount;
+	public int totalWrong;
 	public float health;
 	public int counts;
 	public int highStreak;
