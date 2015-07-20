@@ -8,6 +8,8 @@ public class GameController : MonoBehaviour
 	public GameObject lane;
 	public GameObject backgroundL;
 	public GameObject backgroundU;
+
+	//various floats
 	public float laneWait;
 	public float laneGenPointZ;
 	public float backgroundUpperGenPointZ;
@@ -15,6 +17,11 @@ public class GameController : MonoBehaviour
 	public float startWait;
 	public float bubbleCount;
 
+	//to assimptotically approach 1, update calculation every second? 
+	static private float difficulty = 0;
+
+
+	// bubbles
 	public GameObject bubbleR;
 	public GameObject bubbleG;
 	public GameObject bubbleB;
@@ -38,6 +45,7 @@ public class GameController : MonoBehaviour
 		StartCoroutine (SpawnBubbles ());
 //		StartCoroutine (SpawnBackgroundLower ());
 //		StartCoroutine (SpawnBackgroundUpper ());
+		StartCoroutine (IncreaseDifficulty ());
 	}
 	
 	IEnumerator SpawnLanes ()
@@ -134,6 +142,14 @@ public class GameController : MonoBehaviour
 			}
 			yield return new WaitForSeconds (waveWait);
 		}
+	}
+
+	//assymptotically increases the difficulty to 1
+	IEnumerator IncreaseDifficulty ()
+	{
+
+		//get game time
+		yield return new WaitForSeconds (1);
 	}
 
 }
