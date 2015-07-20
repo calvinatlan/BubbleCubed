@@ -36,8 +36,8 @@ public class GameController : MonoBehaviour
 	{
 		StartCoroutine (SpawnLanes ());
 		StartCoroutine (SpawnBubbles ());
-		StartCoroutine (SpawnBackgroundLower ());
-		StartCoroutine (SpawnBackgroundUpper ());
+//		StartCoroutine (SpawnBackgroundLower ());
+//		StartCoroutine (SpawnBackgroundUpper ());
 	}
 	
 	IEnumerator SpawnLanes ()
@@ -58,40 +58,40 @@ public class GameController : MonoBehaviour
 			
 		}
 	}
-	IEnumerator SpawnBackgroundLower ()
-	{
+//	IEnumerator SpawnBackgroundLower ()
+//	{
+//
+//		//generate first BG Lower
+//		Vector3 initialPositionBGL = new Vector3 (0, -2.0f,-0.1f);
+//			
+//		Instantiate (backgroundL, initialPositionBGL, spawnRotation);
+//
+//		while (true)
+//		{
+//			Vector3 spawnPositionBGL = new Vector3 (0, -2.0f, backgroundLowerGenPointZ);
+//			//Quaternion spawnRotation = Quaternion.identity * Quaternion.Euler(90f,0f,0f);
+//			Instantiate (backgroundL, spawnPositionBGL, spawnRotation);
+//			yield return new WaitForSeconds (backgroundLWait);
+//			
+//		}
+//	}
 
-		//generate first BG Lower
-		Vector3 initialPositionBGL = new Vector3 (0, -2.0f,-0.1f);
-			
-		Instantiate (backgroundL, initialPositionBGL, spawnRotation);
-
-		while (true)
-		{
-			Vector3 spawnPositionBGL = new Vector3 (0, -2.0f, backgroundLowerGenPointZ);
-			//Quaternion spawnRotation = Quaternion.identity * Quaternion.Euler(90f,0f,0f);
-			Instantiate (backgroundL, spawnPositionBGL, spawnRotation);
-			yield return new WaitForSeconds (backgroundLWait);
-			
-		}
-	}
-
-	IEnumerator SpawnBackgroundUpper ()
-	{
-		//generate first BG Upper
-		Vector3 initialPositionBGU = new Vector3 (0, -1.8f, -0.1f);
-		
-		Instantiate (backgroundL, initialPositionBGU, spawnRotation);
-
-		while (true)
-		{
-			Vector3 spawnPositionBGU = new Vector3 (0, -1.8f, backgroundUpperGenPointZ);
-			//Quaternion spawnRotation = Quaternion.identity * Quaternion.Euler(90f,0f,0f);
-			Instantiate (backgroundU, spawnPositionBGU, spawnRotation);
-			yield return new WaitForSeconds (backgroundUWait);
-			
-		}
-	}
+//	IEnumerator SpawnBackgroundUpper ()
+//	{
+//		//generate first BG Upper
+//		Vector3 initialPositionBGU = new Vector3 (0, -1.8f, -0.1f);
+//		
+//		Instantiate (backgroundL, initialPositionBGU, spawnRotation);
+//
+//		while (true)
+//		{
+//			Vector3 spawnPositionBGU = new Vector3 (0, -1.8f, backgroundUpperGenPointZ);
+//			//Quaternion spawnRotation = Quaternion.identity * Quaternion.Euler(90f,0f,0f);
+//			Instantiate (backgroundU, spawnPositionBGU, spawnRotation);
+//			yield return new WaitForSeconds (backgroundUWait);
+//			
+//		}
+//	}
 
 	IEnumerator SpawnBubbles ()
 	{
