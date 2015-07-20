@@ -45,6 +45,9 @@ public class Player : MonoBehaviour {
 	public AudioClip gameStart;
 	private GameObject Cube;
 	private AudioSource music;
+
+	//DeathMenu
+	public GameObject canvas;
 	// Use this for initialization
 	void Start () {
 		//play gameStart music
@@ -192,9 +195,15 @@ public class Player : MonoBehaviour {
 	void healthBarInitial(){
 		num = (int)health;
 
+		if (Input.GetKeyDown ("k")) {
+			health = 0;
+		}
+
 		if (health < 0) {
 			health = 0;
 			healthBar.text = "Game Over";
+			DeathMenu menu = (DeathMenu) canvas.GetComponent("DeathMenu");
+			menu.cubeDestroyed();
 			//if game music is still gameStart music
 			//change it to gameOver music
 			if(music.clip != gameOver){
