@@ -16,11 +16,13 @@ public class DestroyByContactBlue : MonoBehaviour {
 			audio.Play();
 			Destroy (other.gameObject);
 			this.transform.parent.GetComponent<Player>().counts++;
+			this.transform.parent.GetComponent<Player>().totalCount++;
 			this.transform.parent.GetComponent<Player>().health+=3;//here
 		}
 		else if (other.tag == "Green Bubble" ) 
 		{
 			this.transform.parent.GetComponent<Player>().health-=5;//here
+			this.transform.parent.GetComponent<Player>().totalWrong++;
 			this.transform.parent.GetComponent<Player>().counts = 0;
 			Instantiate(explosionG, other.transform.position, other.transform.rotation);
 			Destroy (other.gameObject);
@@ -28,6 +30,7 @@ public class DestroyByContactBlue : MonoBehaviour {
 		else if (other.tag == "Red Bubble" ) 
 		{
 			this.transform.parent.GetComponent<Player>().health-=5;//here
+			this.transform.parent.GetComponent<Player>().totalWrong++;
 			this.transform.parent.GetComponent<Player>().counts = 0;
 			Instantiate(explosionR, other.transform.position, other.transform.rotation);
 			Destroy (other.gameObject);
