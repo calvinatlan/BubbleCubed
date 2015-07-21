@@ -114,7 +114,6 @@ public class GameController : MonoBehaviour
 
 				if (color==-1)
 				{
-					System.Random chooser = new System.Random();
 
 					Vector3 spawnPosition = new Vector3 (lane*2.5f, 0, 25);
 					Quaternion spawnRotation = Quaternion.identity;
@@ -123,7 +122,6 @@ public class GameController : MonoBehaviour
 				}
 				else if (color==0)
 				{
-					System.Random chooser = new System.Random();
 					
 					Vector3 spawnPosition = new Vector3 (lane*2.5f, 0, 25);
 					Quaternion spawnRotation = Quaternion.identity;
@@ -132,7 +130,6 @@ public class GameController : MonoBehaviour
 				}
 				if (color==1)
 				{
-					System.Random chooser = new System.Random();
 					
 					Vector3 spawnPosition = new Vector3 (lane*2.5f, 0, 25);
 					Quaternion spawnRotation = Quaternion.identity;
