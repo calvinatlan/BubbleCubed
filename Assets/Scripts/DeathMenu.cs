@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class DeathMenu : MonoBehaviour {
 
 	private Canvas deathMenu;
-	//public Button replay;
+	public Button replay;
 	public Button mainMenu;
 
 	// Use this for initialization
@@ -14,7 +14,7 @@ public class DeathMenu : MonoBehaviour {
 		deathMenu = (Canvas) this.gameObject.GetComponent("Canvas");
 		deathMenu.enabled = false;
 		mainMenu = mainMenu.GetComponent<Button> ();
-		//replay = replay.GetComponent<Button> ();
+		replay = replay.GetComponent<Button> ();
 	}
 	public void cubeDestroyed(){
 		deathMenu.enabled = true;
@@ -22,9 +22,9 @@ public class DeathMenu : MonoBehaviour {
 	public void menuPress(){
 		Application.LoadLevel(0);
 	}
-	/*public void replayPress(){
+	public void replayPress(){
 		Application.LoadLevel(1);
-	}*/
+	}
 	// Update is called once per frame
 	void Update () {
 	
