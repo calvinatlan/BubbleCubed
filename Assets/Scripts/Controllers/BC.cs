@@ -14,8 +14,7 @@ public class BC : MonoBehaviour {
 	void Update () {
 	
 		if (Input.GetKeyUp	("space")) {
-			Debug.Log("space");
-			createBubble (2);
+			createBubble (5);
 		}
 	}
 
@@ -25,7 +24,6 @@ public class BC : MonoBehaviour {
 		Quaternion spawnRotation = Quaternion.identity;
 		GameObject bub = (GameObject) Instantiate (bubble, spawnPosition, spawnRotation);
 		bub.GetComponent<Bubble>().setColor(1);
-		print (bub.GetComponent<Bubble>().getColor());
 	}
 
 	public void createBubble(int x){
@@ -34,7 +32,6 @@ public class BC : MonoBehaviour {
 		Quaternion spawnRotation = Quaternion.identity;
 		GameObject bub = (GameObject) Instantiate (bubble, spawnPosition, spawnRotation);
 		bub.GetComponent<Bubble>().setColor(x);
-		print (bub.GetComponent<Bubble>().getColor());
 	}
 
 	public void createBubble(int x, int y){
@@ -43,6 +40,5 @@ public class BC : MonoBehaviour {
 		Quaternion spawnRotation = Quaternion.identity;
 		GameObject bub = (GameObject) Instantiate (bubble, spawnPosition, spawnRotation);
 		bub.GetComponent<Bubble>().setColor(x);
-		print (bub.GetComponent<Bubble>().getColor());
 	}
 }
