@@ -172,7 +172,6 @@ public class Player : MonoBehaviour {
 
 	//Coroutine that uses lerp to rotate the cube
 	IEnumerator lRotate(){
-		print ("rotating");
 		rotating = true;
 		float track = 0f;
 		while (track < 1f){
@@ -184,13 +183,16 @@ public class Player : MonoBehaviour {
 	}
 
 	void counter(){
-		countText.text = "Count: " + counts.ToString ();
+		if(canvas != null)
+			countText.text = "Count: " + counts.ToString ();
 	}
 	void highStreakText(){
-		if(counts > highStreak){
-			highStreak = counts;
+		if (canvas != null){
+			if (counts > highStreak) {
+				highStreak = counts;
+			}
+			streakText.text = "High Streak: " + highStreak.ToString ();
 		}
-		streakText.text = "High Streak: " + highStreak.ToString();
 	}
 
 	void healthBarInitial(){
@@ -207,11 +209,6 @@ public class Player : MonoBehaviour {
 			//gets rid of background text during the deathMenu
 			
 			Destroy(canvas);
-//			Destroy (healthBar);
-////			healthBar.enabled = false;
-//			streakText.enabled = false;
-//			countText.enabled = false;
-////			healthSlider.enabled = false;
 
 			DeathMenu menu = (DeathMenu) canvas2.GetComponent("DeathMenu");
 			menu.cubeDestroyed();
@@ -226,16 +223,17 @@ public class Player : MonoBehaviour {
 			
 		}
 		else{
-			if (health > 100){
-				health = 100;
-				healthSlider.value = health;
-				healthBar.text = "Health: 100%";
+			if(canvas != null){
+				if (health > 100){
+					health = 100;
+					healthSlider.value = health;
+					healthBar.text = "Health: 100%";
+				}
+				else{
+					healthBar.text = "Health: " + num.ToString () +"%";
+					healthSlider.value = health;
+				}
 			}
-			else{
-				healthBar.text = "Health: " + num.ToString () +"%";
-				healthSlider.value = health;
-			}
-
 		}
 
 	}
