@@ -202,6 +202,13 @@ public class Player : MonoBehaviour {
 		if (health < 0) {
 			health = 0;
 			healthBar.text = "Game Over";
+
+			//gets rid of background text during the deathMenu
+			healthBar.enabled = false;
+			streakText.enabled = false;
+			countText.enabled = false;
+			healthSlider.enabled = false;
+
 			DeathMenu menu = (DeathMenu) canvas.GetComponent("DeathMenu");
 			menu.cubeDestroyed();
 			//if game music is still gameStart music
