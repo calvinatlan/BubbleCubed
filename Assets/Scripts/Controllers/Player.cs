@@ -48,6 +48,7 @@ public class Player : MonoBehaviour {
 
 	//DeathMenu
 	public GameObject canvas;
+	public GameObject canvas2;
 	// Use this for initialization
 	void Start () {
 		//play gameStart music
@@ -199,17 +200,20 @@ public class Player : MonoBehaviour {
 			health = 0;
 		}
 
-		if (health < 0) {
+		if (health <= 0) {
 			health = 0;
 			healthBar.text = "Game Over";
 
 			//gets rid of background text during the deathMenu
-			healthBar.enabled = false;
-			streakText.enabled = false;
-			countText.enabled = false;
-			healthSlider.enabled = false;
+			
+			Destroy(canvas);
+//			Destroy (healthBar);
+////			healthBar.enabled = false;
+//			streakText.enabled = false;
+//			countText.enabled = false;
+////			healthSlider.enabled = false;
 
-			DeathMenu menu = (DeathMenu) canvas.GetComponent("DeathMenu");
+			DeathMenu menu = (DeathMenu) canvas2.GetComponent("DeathMenu");
 			menu.cubeDestroyed();
 			//if game music is still gameStart music
 			//change it to gameOver music
