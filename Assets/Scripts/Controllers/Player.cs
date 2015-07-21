@@ -47,6 +47,10 @@ public class Player : MonoBehaviour {
 	private GameObject Cube;
 	private AudioSource music;
 
+	public Image Fill;
+	public Color MaxHealthColor = Color.green;
+	public Color MinHealthColor = Color.red;
+
 	//DeathMenu
 	public GameObject canvas;
 	public GameObject canvas2;
@@ -75,7 +79,8 @@ public class Player : MonoBehaviour {
 		Rotate();
 		highStreakText ();
 		counter ();
-		health -= Time.deltaTime;
+		health -= (2 * Time.deltaTime);
+		Fill.color = Color.Lerp(MinHealthColor, MaxHealthColor, (float)health / 100);
 		healthBarInitial ();
 	}
 
@@ -242,6 +247,7 @@ public class Player : MonoBehaviour {
 					health = 100;
 					healthSlider.value = health;
 					healthBar.text = "Health: 100%";
+					//Fill.color = Color.Lerp(MinHealthColor, MaxHealthColor, (float)health / 100);
 				}
 				else{
 					healthBar.text = "Health: " + num.ToString () +"%";
