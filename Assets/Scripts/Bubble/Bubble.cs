@@ -10,7 +10,7 @@ public class Bubble : MonoBehaviour
 	private Animator animator;
 	private RuntimeAnimatorController rAni;
 
-	public enum colors {RED = 1, BLUE = 2, GREEN = 3, RAINBOW = 4};
+	public enum colors {RED = 1, BLUE = 2, GREEN = 3, RAINBOW = 5};
 
 	//Red:1,Blue:2,Green:3,Death:4,Powerup,5+
 	private colors color = 0;
