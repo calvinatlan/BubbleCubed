@@ -5,27 +5,34 @@ using System.Collections;
 public class menuScript : MonoBehaviour {
 
 	public Canvas quitMenu;
+	public Canvas creditMenu;
 	public Button startText;
 	public Button exitText;
+	public Button mainMenu;
 
 	// Use this for initialization
 	void Start () {
 
 		quitMenu = quitMenu.GetComponent<Canvas> ();
+		creditMenu = creditMenu.GetComponent<Canvas> ();
 		startText = startText.GetComponent<Button> ();
 		exitText = exitText.GetComponent<Button> ();
-		quitMenu.enabled = false;
+		mainMenu = mainMenu.GetComponent<Button> ();
+		quitMenu.enabled = false; //exit menu is disabled
+		creditMenu.enabled = false; //credit menu is disabled
 	
 	}
-	
+
+	//press exit button
 	public void ExitPress() {
 	
-		quitMenu.enabled = true;
+		quitMenu.enabled = true; //enable exit menu
 		startText.enabled = false;
 		exitText.enabled = false;
 
 	}
 
+	//go back to main menu when no is pressed in exit menu
 	public void NoPress() {
 
 		quitMenu.enabled = false;
@@ -34,12 +41,29 @@ public class menuScript : MonoBehaviour {
 
 	}
 
-	public void StartLevel() {
+	//goes to credit menu
+	public void CreditPress() {
 
-		Application.LoadLevel (1);
+		creditMenu.enabled = true;
+		mainMenu.enabled = true;
 
 	}
 
+	//go back to main menu
+	public void MenuPress() {
+
+		Application.LoadLevel (0);
+	
+	}
+
+	//press start game button
+	public void StartLevel() {
+
+		Application.LoadLevel (1); //loads game
+
+	}
+
+	//press yes to exit game
 	public void ExitGame() {
 
 		Application.Quit ();
