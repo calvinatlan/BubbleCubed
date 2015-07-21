@@ -37,6 +37,7 @@ public class Player : MonoBehaviour {
 	public Text streakText;
 	public Text healthBar;
 
+	public Slider streakSlider;
 	public Slider healthSlider; 
 	public float startingHealth = 100;
 
@@ -185,15 +186,27 @@ public class Player : MonoBehaviour {
 	void counter(){
 		if(canvas != null)
 			countText.text = "Count: " + counts.ToString ();
+			streakSlider.value = counts;
 	}
+
 	void highStreakText(){
-		if (canvas != null){
-			if (counts > highStreak) {
-				highStreak = counts;
-			}
-			streakText.text = "High Streak: " + highStreak.ToString ();
+		if(counts > highStreak){
+			highStreak = counts;
+			streakSlider.maxValue = highStreak;
 		}
+		streakText.text = "Streak: " + highStreak.ToString();
+		if(canvas != null)
+			countText.text = "Count: " + counts.ToString ();
 	}
+//
+//	void highStreakText(){
+//		if (canvas != null){
+//			if (counts > highStreak) {
+//				highStreak = counts;
+//			}
+//			streakText.text = "High Streak: " + highStreak.ToString ();
+//		}
+//	}
 
 	void healthBarInitial(){
 		num = (int)health;
@@ -204,6 +217,7 @@ public class Player : MonoBehaviour {
 
 		if (health <= 0) {
 			health = 0;
+			healthSlider.value = health;
 			healthBar.text = "Game Over";
 
 			//gets rid of background text during the deathMenu
