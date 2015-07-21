@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BubbleMover : MonoBehaviour 
+public class Bubble : MonoBehaviour 
 {
 	public float speed;
 	
