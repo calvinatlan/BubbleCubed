@@ -47,9 +47,13 @@ public class Player : MonoBehaviour {
 	private GameObject Cube;
 	private AudioSource music;
 
-	public Image Fill;
+	public Image healthFill;
 	public Color MaxHealthColor = Color.green;
 	public Color MinHealthColor = Color.red;
+
+	public Image streakFill;
+	public Color MaxStreakColor = Color.blue;
+	public Color MinStreakColor = Color.blue;
 
 	//DeathMenu
 	public GameObject canvas;
@@ -80,7 +84,8 @@ public class Player : MonoBehaviour {
 		highStreakText ();
 		counter ();
 		health -= (2 * Time.deltaTime);
-		Fill.color = Color.Lerp(MinHealthColor, MaxHealthColor, (float)health / 100);
+		healthFill.color = Color.Lerp(MinHealthColor, MaxHealthColor, (float)health / 100);
+		streakFill.color = Color.Lerp (MinStreakColor,MaxStreakColor, (float)counts/highStreak);
 		healthBarInitial ();
 	}
 
@@ -199,7 +204,7 @@ public class Player : MonoBehaviour {
 			highStreak = counts;
 			streakSlider.maxValue = highStreak;
 		}
-		streakText.text = "Streak: " + highStreak.ToString();
+		streakText.text = "Streak: " + counts.ToString () + "/" + highStreak.ToString();
 		if(canvas != null)
 			countText.text = "Count: " + counts.ToString ();
 	}
