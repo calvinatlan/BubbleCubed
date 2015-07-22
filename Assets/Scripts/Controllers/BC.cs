@@ -5,6 +5,7 @@ using System.Collections;
 public class BC : MonoBehaviour {
 
 	public GameObject bubble;
+	public GameObject heart;
 
 
 	// Use this for initialization
@@ -38,9 +39,18 @@ public class BC : MonoBehaviour {
 		}
 		Vector3 spawnPosition = new Vector3 (lane*2.5f, 0, 25);
 		Quaternion spawnRotation = Quaternion.identity;
-		GameObject bub = (GameObject) Instantiate (bubble, spawnPosition, spawnRotation);
-		bub.GetComponent<Bubble>().setColor(x);
+		if (x == 6) 
+		{
+			Quaternion spawnRotation2 = Quaternion.identity * Quaternion.Euler (-90f, -90f, 0f);
+			GameObject hrt = (GameObject)Instantiate (heart, spawnPosition, spawnRotation2);
 
+		} 
+		else 
+		{
+			
+			GameObject bub = (GameObject)Instantiate (bubble, spawnPosition, spawnRotation);
+			bub.GetComponent<Bubble> ().setColor (x);
+		}
 
 		double bar =  rand.NextDouble();
 		if (bar < GameController.difficulty) 
