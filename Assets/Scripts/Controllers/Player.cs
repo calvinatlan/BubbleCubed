@@ -44,7 +44,7 @@ public class Player : MonoBehaviour {
 	//variables for audio
 	public AudioClip gameOver;
 	public AudioClip gameStart;
-	public AudioClip pop;
+	public AudioClip [] pop = new AudioClip[5];
 	private AudioSource music;
 	private AudioSource sE;
 
@@ -64,11 +64,12 @@ public class Player : MonoBehaviour {
 		//Create bgm audiosource
 		music = gameObject.AddComponent<AudioSource> ();
 		music.clip = gameStart;
+		music.volume = .25F;
 		music.Play();
 
 		//Create pop audiosource
 		sE = gameObject.AddComponent<AudioSource> ();
-		sE.clip = pop;
+		sE.volume = 2f;
 
 		counts = 0;
 		highStreak = counts;
@@ -273,6 +274,7 @@ public class Player : MonoBehaviour {
 	//-------------------Point scoring functions---------------//
 	//--------------------------------------------------------//
 	public void points(int s){
+		sE.clip = pop[Random.Range (0,4)];
 		sE.Play ();
 		counts++;
 		totalCount++;
