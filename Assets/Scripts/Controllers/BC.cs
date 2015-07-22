@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 
 public class BC : MonoBehaviour {
 
 	public GameObject bubble;
+
 
 	// Use this for initialization
 	void Start () {
@@ -39,9 +41,14 @@ public class BC : MonoBehaviour {
 		GameObject bub = (GameObject) Instantiate (bubble, spawnPosition, spawnRotation);
 		bub.GetComponent<Bubble>().setColor(x);
 
-		Vector3 spawnPosition2 = new Vector3 (otherLane*2.5f, 0, 25);
-		GameObject bub2 = (GameObject) Instantiate (bubble, spawnPosition2, spawnRotation);
-		bub2.GetComponent<Bubble>().setColor(4);
+
+		double bar =  rand.NextDouble();
+		if (bar < GameController.difficulty) 
+		{
+			Vector3 spawnPosition2 = new Vector3 (otherLane * 2.5f, 0, 25);
+			GameObject bub2 = (GameObject)Instantiate (bubble, spawnPosition2, spawnRotation);
+			bub2.GetComponent<Bubble> ().setColor (4);
+		}
 	}
 
 	public void createBubble(int x, int y){

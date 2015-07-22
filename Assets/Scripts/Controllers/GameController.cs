@@ -18,7 +18,7 @@ public class GameController : MonoBehaviour
 	public float bubbleCount;
 
 	//to assimptotically approach 1, update calculation every second? 
-	static private float difficulty = 0;
+	public static double difficulty = 0.05;
 
 	public float spawnWait;
 	public float waveWait;
@@ -26,7 +26,7 @@ public class GameController : MonoBehaviour
 	//private float backgroundUWait = backgroundU.z/backgroundU.speed;
 	public float backgroundLWait;
 	public float backgroundUWait;
-	static int score = 0;
+	//static int score = 0;
 	Quaternion spawnRotation = Quaternion.identity * Quaternion.Euler(90f,0f,0f);
 
 	private BC spawner;
@@ -67,8 +67,8 @@ public class GameController : MonoBehaviour
 		{
 			System.Random rnd = new System.Random();
 
-			int colorR = rnd.Next (1,6);
-			spawner.createBubble (colorR);
+			int color = rnd.Next (1,6);
+			spawner.createBubble (color);
 			yield return new WaitForSeconds (waveWait);
 		}
 	}
@@ -76,9 +76,10 @@ public class GameController : MonoBehaviour
 	//assymptotically increases the difficulty to 1
 	IEnumerator IncreaseDifficulty ()
 	{
-
-		//get game time
-		yield return new WaitForSeconds (1);
+		difficulty = 1 - ((1 - difficulty) / 1.1);
+		yield return new WaitForSeconds (0.01f);
 	}
+
+
 
 }
