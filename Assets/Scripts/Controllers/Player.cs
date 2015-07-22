@@ -44,8 +44,9 @@ public class Player : MonoBehaviour {
 	//variables for audio
 	public AudioClip gameOver;
 	public AudioClip gameStart;
-	private GameObject Cube;
+	public AudioClip pop;
 	private AudioSource music;
+	private AudioSource sE;
 
 	public Image healthFill;
 	public Color MaxHealthColor = Color.green;
@@ -60,12 +61,14 @@ public class Player : MonoBehaviour {
 	public GameObject canvas2;
 	// Use this for initialization
 	void Start () {
-		//play gameStart music
-		Cube = GameObject.Find("Cube");
-		Cube.AddComponent (typeof(AudioSource));
-		music = GetComponent<AudioSource>();
+		//Create bgm audiosource
+		music = gameObject.AddComponent<AudioSource> ();
 		music.clip = gameStart;
 		music.Play();
+
+		//Create pop audiosource
+		sE = gameObject.AddComponent<AudioSource> ();
+		sE.clip = pop;
 
 		counts = 0;
 		highStreak = counts;
@@ -270,8 +273,7 @@ public class Player : MonoBehaviour {
 	//-------------------Point scoring functions---------------//
 	//--------------------------------------------------------//
 	public void points(int s){
-		AudioSource audio = GetComponent<AudioSource> ();
-		audio.Play ();
+		sE.Play ();
 		counts++;
 		totalCount++;
 		health+=s;
