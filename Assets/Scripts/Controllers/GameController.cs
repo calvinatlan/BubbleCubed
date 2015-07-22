@@ -20,16 +20,6 @@ public class GameController : MonoBehaviour
 	//to assimptotically approach 1, update calculation every second? 
 	static private float difficulty = 0;
 
-
-	// bubbles
-	public GameObject bubbleR;
-	public GameObject bubbleG;
-	public GameObject bubbleB;
-	public GameObject bubbleDeath;
-	public GameObject bubbleRainbow1;
-	public GameObject bubbleRainbow2;
-	public GameObject bubbleRainbow3;
-
 	public float spawnWait;
 	public float waveWait;
 	//will tie this to speeds so that the tileing is seemless
@@ -38,14 +28,17 @@ public class GameController : MonoBehaviour
 	public float backgroundUWait;
 	static int score = 0;
 	Quaternion spawnRotation = Quaternion.identity * Quaternion.Euler(90f,0f,0f);
+
+	private BC spawner;
 	
 	void Start ()
 	{
+		spawner = GetComponent<BC>();
+
 		StartCoroutine (SpawnLanes ());
 		StartCoroutine (SpawnBubbles ());
-//		StartCoroutine (SpawnBackgroundLower ());
-//		StartCoroutine (SpawnBackgroundUpper ());
 		StartCoroutine (IncreaseDifficulty ());
+
 	}
 	
 	IEnumerator SpawnLanes ()
@@ -66,40 +59,6 @@ public class GameController : MonoBehaviour
 			
 		}
 	}
-//	IEnumerator SpawnBackgroundLower ()
-//	{
-//
-//		//generate first BG Lower
-//		Vector3 initialPositionBGL = new Vector3 (0, -2.0f,-0.1f);
-//			
-//		Instantiate (backgroundL, initialPositionBGL, spawnRotation);
-//
-//		while (true)
-//		{
-//			Vector3 spawnPositionBGL = new Vector3 (0, -2.0f, backgroundLowerGenPointZ);
-//			//Quaternion spawnRotation = Quaternion.identity * Quaternion.Euler(90f,0f,0f);
-//			Instantiate (backgroundL, spawnPositionBGL, spawnRotation);
-//			yield return new WaitForSeconds (backgroundLWait);
-//			
-//		}
-//	}
-
-//	IEnumerator SpawnBackgroundUpper ()
-//	{
-//		//generate first BG Upper
-//		Vector3 initialPositionBGU = new Vector3 (0, -1.8f, -0.1f);
-//		
-//		Instantiate (backgroundL, initialPositionBGU, spawnRotation);
-//
-//		while (true)
-//		{
-//			Vector3 spawnPositionBGU = new Vector3 (0, -1.8f, backgroundUpperGenPointZ);
-//			//Quaternion spawnRotation = Quaternion.identity * Quaternion.Euler(90f,0f,0f);
-//			Instantiate (backgroundU, spawnPositionBGU, spawnRotation);
-//			yield return new WaitForSeconds (backgroundUWait);
-//			
-//		}
-//	}
 
 	IEnumerator SpawnBubbles ()
 	{
@@ -114,27 +73,15 @@ public class GameController : MonoBehaviour
 
 				if (color==-1)
 				{
-
-					Vector3 spawnPosition = new Vector3 (lane*2.5f, 0, 25);
-					Quaternion spawnRotation = Quaternion.identity;
-					Instantiate (bubbleR, spawnPosition, spawnRotation);
-					yield return new WaitForSeconds (spawnWait);
+					spawner.createBubble (1);
 				}
 				else if (color==0)
 				{
-					
-					Vector3 spawnPosition = new Vector3 (lane*2.5f, 0, 25);
-					Quaternion spawnRotation = Quaternion.identity;
-					Instantiate (bubbleG, spawnPosition, spawnRotation);
-					yield return new WaitForSeconds (spawnWait);
+					spawner.createBubble(2);
 				}
 				if (color==1)
 				{
-					
-					Vector3 spawnPosition = new Vector3 (lane*2.5f, 0, 25);
-					Quaternion spawnRotation = Quaternion.identity;
-					Instantiate (bubbleB, spawnPosition, spawnRotation);
-					yield return new WaitForSeconds (spawnWait);
+					spawner.createBubble(3);
 				}
 			}
 			yield return new WaitForSeconds (waveWait);

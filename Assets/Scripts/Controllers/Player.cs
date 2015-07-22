@@ -267,7 +267,22 @@ public class Player : MonoBehaviour {
 
 	}
 
+	//-------------------Point scoring functions---------------//
+	//--------------------------------------------------------//
+	public void points(int s){
+		AudioSource audio = GetComponent<AudioSource> ();
+		audio.Play ();
+		counts++;
+		totalCount++;
+		health+=s;
+	}
 
-
-
+	public void hurt(int s){
+		health-=s;
+		totalWrong++;
+		counts = 0;
+	}
+	
+	//--------------------------------------------------------//
+	//--------------------------------------------------------//
 }
