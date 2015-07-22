@@ -66,6 +66,7 @@ public class GameController : MonoBehaviour
 		while (true)
 		{
 			System.Random rnd = new System.Random();
+			/*
 			int color = rnd.Next (-1,2);
 			int lane = rnd.Next (-1,2);
 
@@ -81,6 +82,9 @@ public class GameController : MonoBehaviour
 			{
 				spawner.createBubble(3);
 			}
+			*/
+			int color = rnd.Next (1,6);
+			spawner.createBubble (color);
 			yield return new WaitForSeconds (waveWait);
 		}
 	}
