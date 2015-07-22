@@ -23,7 +23,7 @@ public class Bubble : MonoBehaviour
 	private RuntimeAnimatorController rAni;
 
 	//All possible bubbles
-	public enum colors {RED = 1, GREEN = 2, BLUE = 3, RAINBOW = 5};
+	public enum colors {RED = 1, GREEN = 2, BLUE = 3, HAZARD = 4, RAINBOW = 5};
 
 	//Red:1,Blue:2,Green:3,Death:4,Powerup,5+
 	private colors color = 0;
@@ -40,6 +40,7 @@ public class Bubble : MonoBehaviour
 		bMat[1] = Resources.Load("RedBubble", typeof(Material)) as Material;
 		bMat[2] = Resources.Load("GreenBubble", typeof(Material)) as Material;
 		bMat[3] = Resources.Load("BlueBubble", typeof(Material)) as Material;
+		bMat[4] = Resources.Load("HazardBubble", typeof(Material)) as Material;
 		bMat[5] = Resources.Load("RainbowBubble", typeof(Material)) as Material;
 
 		//Load rainbow animator controller

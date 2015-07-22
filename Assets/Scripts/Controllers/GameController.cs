@@ -66,25 +66,9 @@ public class GameController : MonoBehaviour
 		while (true)
 		{
 			System.Random rnd = new System.Random();
-			/*
-			int color = rnd.Next (-1,2);
-			int lane = rnd.Next (-1,2);
 
-			if (color==-1)
-			{
-				spawner.createBubble (1);
-			}
-			else if (color==0)
-			{
-				spawner.createBubble(2);
-			}
-			if (color==1)
-			{
-				spawner.createBubble(3);
-			}
-			*/
-			int color = rnd.Next (1,6);
-			spawner.createBubble (color);
+			int colorR = rnd.Next (1,6);
+			spawner.createBubble (colorR);
 			yield return new WaitForSeconds (waveWait);
 		}
 	}
