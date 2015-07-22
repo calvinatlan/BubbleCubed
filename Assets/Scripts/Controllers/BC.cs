@@ -28,10 +28,20 @@ public class BC : MonoBehaviour {
 
 	public void createBubble(int x){
 		System.Random rand = new System.Random ();
-		Vector3 spawnPosition = new Vector3 (rand.Next(-1,2)*2.5f, 0, 25);
+		int lane = rand.Next (-1, 2);
+		int otherLane = rand.Next (-1, 2);
+		while (otherLane==lane) 
+		{
+			otherLane = rand.Next (-1, 2);
+		}
+		Vector3 spawnPosition = new Vector3 (lane*2.5f, 0, 25);
 		Quaternion spawnRotation = Quaternion.identity;
 		GameObject bub = (GameObject) Instantiate (bubble, spawnPosition, spawnRotation);
 		bub.GetComponent<Bubble>().setColor(x);
+
+		Vector3 spawnPosition2 = new Vector3 (otherLane*2.5f, 0, 25);
+		GameObject bub2 = (GameObject) Instantiate (bubble, spawnPosition2, spawnRotation);
+		bub2.GetComponent<Bubble>().setColor(4);
 	}
 
 	public void createBubble(int x, int y){
