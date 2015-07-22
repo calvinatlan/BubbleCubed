@@ -81,12 +81,7 @@ public class Player : MonoBehaviour {
 	void Update () {
 		Movement ();
 		Rotate();
-		highStreakText ();
-		counter ();
-		health -= (2 * Time.deltaTime);
-		healthFill.color = Color.Lerp(MinHealthColor, MaxHealthColor, (float)health / 100);
-		streakFill.color = Color.Lerp (MinStreakColor,MaxStreakColor, (float)counts/highStreak);
-		healthBarInitial ();
+		canvasUpdate ();
 	}
 
 //Made this code simpler, calls moveTo function
@@ -218,6 +213,17 @@ public class Player : MonoBehaviour {
 //		}
 //	}
 
+	void canvasUpdate(){
+		if (canvas != null) {
+			highStreakText ();
+			counter ();
+			health -= (2 * Time.deltaTime);
+			healthFill.color = Color.Lerp(MinHealthColor, MaxHealthColor, (float)health / 100);
+			streakFill.color = Color.Lerp (MinStreakColor,MaxStreakColor, (float)counts/highStreak);
+			healthBarInitial ();
+		}
+	}
+
 	void healthBarInitial(){
 		num = (int)health;
 
@@ -247,17 +253,15 @@ public class Player : MonoBehaviour {
 			
 		}
 		else{
-			if(canvas != null){
-				if (health > 100){
-					health = 100;
-					healthSlider.value = health;
-					healthBar.text = "Health: 100%";
-					//Fill.color = Color.Lerp(MinHealthColor, MaxHealthColor, (float)health / 100);
-				}
-				else{
-					healthBar.text = "Health: " + num.ToString () +"%";
-					healthSlider.value = health;
-				}
+			if (health > 100){
+				health = 100;
+				healthSlider.value = health;
+				healthBar.text = "Health: 100%";
+				//Fill.color = Color.Lerp(MinHealthColor, MaxHealthColor, (float)health / 100);
+			}
+			else{
+				healthBar.text = "Health: " + num.ToString () +"%";
+				healthSlider.value = health;
 			}
 		}
 
