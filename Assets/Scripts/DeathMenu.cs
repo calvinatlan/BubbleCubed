@@ -8,15 +8,25 @@ public class DeathMenu : MonoBehaviour {
 	private Canvas deathMenu;
 	public Button replay;
 	public Button mainMenu;
+	public Text correct;
+	public Text wrong;
+	public GameObject cube;
+	private Player player;
 
 	// Use this for initialization
 	void Start () {
-		deathMenu = (Canvas) this.gameObject.GetComponent("Canvas");
+		deathMenu = this.gameObject.GetComponent<Canvas>();
+		player = cube.GetComponent<Player>();
 		deathMenu.enabled = false;
 		mainMenu = mainMenu.GetComponent<Button> ();
 		replay = replay.GetComponent<Button> ();
+		correct = correct.GetComponent<Text> ();
+		wrong = wrong.GetComponent<Text> ();
+
 	}
 	public void cubeDestroyed(){
+		correct.text = "Total Bubbles Collected: " + player.totalCount.ToString();
+		wrong.text = "Total Wrong Bubbles: " + player.totalWrong.ToString();
 		deathMenu.enabled = true;
 	}
 	public void menuPress(){
