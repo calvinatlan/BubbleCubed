@@ -23,7 +23,7 @@ public class Bubble : MonoBehaviour
 	private RuntimeAnimatorController rAni;
 
 	//All possible bubbles
-	public enum colors {RED = 1, BLUE = 2, GREEN = 3, RAINBOW = 5};
+	public enum colors {RED = 1, GREEN = 2, BLUE = 3, RAINBOW = 5};
 
 	//Red:1,Blue:2,Green:3,Death:4,Powerup,5+
 	private colors color = 0;
@@ -81,7 +81,6 @@ public class Bubble : MonoBehaviour
 		
 		Renderer otherR = other.gameObject.GetComponent<Renderer> ();
 		if (otherR != null) {
-			print (other.gameObject.GetInstanceID());
 			//If it does, it checks the name and compares it to the color of this bubble
 			string otherS = otherR.material.name.ToUpper ();
 
