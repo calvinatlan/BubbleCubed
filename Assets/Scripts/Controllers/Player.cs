@@ -64,7 +64,7 @@ public class Player : MonoBehaviour {
 		//Create bgm audiosource
 		music = gameObject.AddComponent<AudioSource> ();
 		music.clip = gameStart;
-		music.volume = .25F;
+		music.volume = .5F;
 		music.Play();
 
 		//Create pop audiosource
