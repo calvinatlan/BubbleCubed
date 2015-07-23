@@ -65,9 +65,17 @@ public class GameController : MonoBehaviour
 		yield return new WaitForSeconds (startWait);
 		while (true)
 		{
+			//difficulty randomizer
 			System.Random rnd = new System.Random();
 
-			int color = rnd.Next (1,8);
+			int chooser = rnd.Next (1,1001);
+			int color;
+			if (chooser < 500- (int) difficulty * 300) color = rnd.Next (1,4);
+			else if (chooser < 900) color = 4;
+			else if (chooser <950- (int) difficulty * 30) color = 5;
+			else if (chooser < 975- (int) difficulty * 35) color = 6;
+			else if (chooser < 1000- (int) difficulty * 50)color = 7;
+			else color =4;
 			spawner.createBubble (color);
 			yield return new WaitForSeconds (waveWait);
 		}
@@ -76,8 +84,8 @@ public class GameController : MonoBehaviour
 	//assymptotically increases the difficulty to 1
 	IEnumerator IncreaseDifficulty ()
 	{
-		difficulty = 1 - ((1 - difficulty) / 1.1);
-		yield return new WaitForSeconds (0.01f);
+		difficulty = 1 - ((1 - difficulty) / 1.2);
+		yield return new WaitForSeconds (0.05f);
 	}
 
 
