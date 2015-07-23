@@ -65,11 +65,12 @@ public class Player : MonoBehaviour {
 		music = gameObject.AddComponent<AudioSource> ();
 		music.clip = gameStart;
 		music.volume = .5F;
+		music.loop = true;
 		music.Play();
 
 		//Create pop audiosource
 		sE = gameObject.AddComponent<AudioSource> ();
-		sE.volume = 2f;
+		sE.volume = 5f;
 
 		counts = 0;
 		highStreak = counts;
@@ -251,6 +252,8 @@ public class Player : MonoBehaviour {
 			if(music.clip != gameOver){
 				music.Stop();
 				music.clip = gameOver;
+				music.loop = true;
+				music.volume = .25f;
 				music.Play();
 			}
 
