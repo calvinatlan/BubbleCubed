@@ -67,7 +67,7 @@ public class GameController : MonoBehaviour
 		{
 			//difficulty randomizer
 			System.Random rnd = new System.Random();
-			/*
+
 			int chooser = rnd.Next (1,1001);
 			int color;
 			if (chooser < 500- (int) difficulty * 300) color = rnd.Next (1,4);
@@ -77,8 +77,6 @@ public class GameController : MonoBehaviour
 			else if (chooser < 1000- (int) difficulty * 50)color = 7;
 			else color =4;
 
-*/
-			int color = 7;
 			spawner.createBubble (color);
 			yield return new WaitForSeconds (waveWait);
 		}
