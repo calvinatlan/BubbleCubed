@@ -67,7 +67,7 @@ public class GameController : MonoBehaviour
 		{
 			System.Random rnd = new System.Random();
 
-			int color = rnd.Next (1,7);
+			int color = rnd.Next (1,8);
 			spawner.createBubble (color);
 			yield return new WaitForSeconds (waveWait);
 		}

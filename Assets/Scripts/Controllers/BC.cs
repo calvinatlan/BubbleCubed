@@ -6,6 +6,7 @@ public class BC : MonoBehaviour {
 
 	public GameObject bubble;
 	public GameObject heart;
+	public GameObject heartRain;
 
 
 	// Use this for initialization
@@ -45,6 +46,12 @@ public class BC : MonoBehaviour {
 			GameObject hrt = (GameObject)Instantiate (heart, spawnPosition, spawnRotation2);
 
 		} 
+		else if (x == 7) 
+		{
+			Quaternion spawnRotation2 = Quaternion.identity * Quaternion.Euler (-90f, -90f, 0f);
+			GameObject hrtR = (GameObject)Instantiate (heartRain, spawnPosition, spawnRotation2);
+			
+		} 
 		else 
 		{
 			
@@ -62,7 +69,7 @@ public class BC : MonoBehaviour {
 	}
 
 	public void createBubble(int x, int y){
-		System.Random rand = new System.Random ();
+	//	System.Random rand = new System.Random ();
 		Vector3 spawnPosition = new Vector3 (y*2.5f, 0, 25);
 		Quaternion spawnRotation = Quaternion.identity;
 		GameObject bub = (GameObject) Instantiate (bubble, spawnPosition, spawnRotation);
