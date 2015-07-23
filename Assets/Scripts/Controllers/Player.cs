@@ -260,8 +260,8 @@ public class Player : MonoBehaviour {
 			
 		}
 		else{
-			if (health > 100){
-				health = 100;
+			if (health > startingHealth){
+				health = startingHealth;
 				healthSlider.value = health;
 				healthBar.text = "Health: 100%";
 				//Fill.color = Color.Lerp(MinHealthColor, MaxHealthColor, (float)health / 100);
@@ -282,6 +282,15 @@ public class Player : MonoBehaviour {
 		counts++;
 		totalCount++;
 		health+=s;
+	}
+
+	public void startHealthUp(){
+
+		if (startingHealth <= 190) 
+		{
+			startingHealth += 10;
+			health = startingHealth;
+		}
 	}
 
 	public void hurt(int s){
