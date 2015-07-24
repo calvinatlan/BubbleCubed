@@ -35,6 +35,7 @@ public class Player : MonoBehaviour {
 	private Quaternion rTarget;
 	private Vector3 cAxis;
 
+	public int gamePoints;
 	public int totalCount;
 	public int totalWrong;
 	public float health;
@@ -80,6 +81,7 @@ public class Player : MonoBehaviour {
 		sE = gameObject.AddComponent<AudioSource> ();
 		sE.volume = 5f;
 
+		gamePoints = 0;
 		counts = 0;
 		highStreak = counts;
 		health = startingHealth;
@@ -336,16 +338,37 @@ public class Player : MonoBehaviour {
 		totalCount++;
 		health+=s;
 	}
-
+	
+	public void addPoints(int pointsWorth){
+		gamePoints += pointsWorth * multiplier();
+	}
+	
+	private int multiplier(){
+		int num;
+		int mult = counts / 10;
+		int maxMltiplier = 5;
+		
+		//multiplier 0 through 5
+		if (mult < maxMltiplier) {
+			num = mult + 1;
+		} 
+		//multiplier set to max
+		else{
+			num = maxMltiplier;
+		} 
+		
+		return num;
+	}
+	
 	public void startHealthUp(){
-
+		
 		if (startingHealth <= 190) 
 		{
 			startingHealth += 10;
 			health = startingHealth;
 		}
 	}
-
+	
 	public void hurt(int s){
 		health-=s;
 		totalWrong++;
