@@ -72,10 +72,10 @@ public class GameController : MonoBehaviour
 			int chooser = rnd.Next (1,1001);
 			int color;
 			if (chooser < 500- (int) difficulty * 300) color = rnd.Next (1,4);
-			else if (chooser < 900) color = 4;
-			else if (chooser <950- (int) difficulty * 30) color = 5;
-			else if (chooser < 975- (int) difficulty * 35) color = 6;
-			else if (chooser < 1000- (int) difficulty * 50)color = 7;
+			else if (chooser < 950) color = 4;
+			else if (chooser <960- (int) difficulty * 5) color = 5;
+			else if (chooser < 970- (int) difficulty * 10) color = 6;
+			else if (chooser < 975- (int) difficulty * 2)color = 7;
 			else color =4;
 
 			spawner.createBubble (color);
