@@ -79,9 +79,15 @@ public class Bubble : MonoBehaviour
 	}
 
 	void OnTriggerEnter(Collider other){
-		
+
+
 		Renderer otherR = other.gameObject.GetComponent<Renderer> ();
-		if (otherR != null) {
+		if (player.getRainbow())
+		{
+			Destroy (this.gameObject);
+			player.points(3);
+		}
+		else if (otherR != null) {
 			//If it does, it checks the name and compares it to the color of this bubble
 			string otherS = otherR.material.name.ToUpper ();
 
@@ -97,11 +103,15 @@ public class Bubble : MonoBehaviour
 				Destroy (this.gameObject);
 				if(otherS.StartsWith (color.ToString())){
 					player.points(3);
-				}else{
+				}else if(color==colors.RAINBOW){
+					StartCoroutine (player.turnToRainbow());
+				}
+				else {
 					player.hurt(5);
 					explode.sd();
 				}
 			}
+
 		}
 	}
 	

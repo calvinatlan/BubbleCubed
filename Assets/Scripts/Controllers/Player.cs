@@ -11,6 +11,8 @@ public class Player : MonoBehaviour {
 	//How fast the cube rotates
 	public float rSpeed;
 
+	private bool isRainbow = false;
+
 	private enum lanes {Left, Middle, Right};
 	private int curLane = (int)lanes.Middle;
 
@@ -273,6 +275,20 @@ public class Player : MonoBehaviour {
 		}
 
 	}
+
+	public bool getRainbow()
+	{
+		return isRainbow;
+	}
+	
+	public IEnumerator turnToRainbow ()
+	{
+		isRainbow = true;
+		yield return new WaitForSeconds (5);
+		isRainbow = false;
+
+	}
+
 
 	//-------------------Point scoring functions---------------//
 	//--------------------------------------------------------//

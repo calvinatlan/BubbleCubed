@@ -19,3 +19,4 @@ Thumbs.*
 /*.fbm.meta
 # Android APK
 /*.apk
+*.meta
