@@ -7,6 +7,6 @@ public class LaneMover : MonoBehaviour
 	
 	void Start ()
 	{
-		GetComponent<Rigidbody>().velocity = transform.up * speed;
+		GetComponent<Rigidbody>().velocity = transform.up * speed * GameController.multiplier;
 	}
 }

@@ -8,6 +8,7 @@ public class GameController : MonoBehaviour
 	public GameObject lane;
 	public GameObject backgroundL;
 	public GameObject backgroundU;
+	static public float multiplier =1;
 
 	//various floats
 	public float laneWait;
@@ -55,7 +56,7 @@ public class GameController : MonoBehaviour
 			Vector3 spawnPosition = new Vector3 (0, -1, laneGenPointZ);
 			//Quaternion spawnRotation = Quaternion.identity * Quaternion.Euler(90f,0f,0f);
 			Instantiate (lane, spawnPosition, spawnRotation);
-			yield return new WaitForSeconds (laneWait);
+			yield return new WaitForSeconds (laneWait/multiplier);
 			
 		}
 	}
@@ -78,7 +79,7 @@ public class GameController : MonoBehaviour
 			else color =4;
 
 			spawner.createBubble (color);
-			yield return new WaitForSeconds (waveWait);
+			yield return new WaitForSeconds (waveWait/multiplier);
 		}
 	}
 

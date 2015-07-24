@@ -8,6 +8,6 @@ public class HeartController : MonoBehaviour {
 	void Start()
 	{
 		//Make bubbles move forward
-		GetComponent<Rigidbody> ().velocity = transform.right * speed;
+		GetComponent<Rigidbody> ().velocity = transform.right * speed * GameController.multiplier;
 	}
 }

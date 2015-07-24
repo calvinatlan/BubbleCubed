@@ -52,7 +52,7 @@ public class Bubble : MonoBehaviour
 		explode = gameObject.GetComponent<Explode> ();
 
 		//Make bubbles move forward
-		GetComponent<Rigidbody>().velocity = transform.forward * speed;
+		GetComponent<Rigidbody>().velocity = transform.forward * speed * GameController.multiplier;
 	}
 
 	void Update(){

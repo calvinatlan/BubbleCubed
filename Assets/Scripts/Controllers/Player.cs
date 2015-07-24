@@ -11,6 +11,12 @@ public class Player : MonoBehaviour {
 	//How fast the cube rotates
 	public float rSpeed;
 
+	private GameObject rainbowSide1;
+	private GameObject rainbowSide2;
+	private GameObject rainbowSide3;
+	private GameObject rainbowSide4;
+	private GameObject rainbowSide5;
+	private GameObject rainbowSide6;
 	private bool isRainbow = false;
 
 	private enum lanes {Left, Middle, Right};
@@ -81,6 +87,18 @@ public class Player : MonoBehaviour {
 		counter ();//updatecount
 		healthBarInitial ();
 
+		rainbowSide1 =  GameObject.FindGameObjectWithTag ("Rainbow Side");
+		rainbowSide1.SetActive (false);
+		rainbowSide2 =  GameObject.FindGameObjectWithTag ("Rainbow Side 2");
+		rainbowSide2.SetActive (false);
+		rainbowSide3 =  GameObject.FindGameObjectWithTag ("Rainbow Side 3");
+		rainbowSide3.SetActive (false);
+		rainbowSide4 =  GameObject.FindGameObjectWithTag ("Rainbow Side 4");
+		rainbowSide4.SetActive (false);
+		rainbowSide5 =  GameObject.FindGameObjectWithTag ("Rainbow Side 5");
+		rainbowSide5.SetActive (false);
+		rainbowSide6 =  GameObject.FindGameObjectWithTag ("Rainbow Side 6");
+		rainbowSide6.SetActive (false);
 	}
 
 	
@@ -284,8 +302,27 @@ public class Player : MonoBehaviour {
 	public IEnumerator turnToRainbow ()
 	{
 		isRainbow = true;
+		if (GameController.multiplier<2) GameController.multiplier++;
+		rainbowSide1.SetActive (true);
+		rainbowSide2.SetActive (true);
+		rainbowSide3.SetActive (true);
+		rainbowSide4.SetActive (true);
+		rainbowSide5.SetActive (true);
+		rainbowSide6.SetActive (true);
+		StartCoroutine (waitAndThen());
+		yield return null;
+	}
+	public IEnumerator waitAndThen()
+	{
 		yield return new WaitForSeconds (5);
+		if (GameController.multiplier==2)GameController.multiplier--;
 		isRainbow = false;
+		rainbowSide1.SetActive (false);
+		rainbowSide2.SetActive (false);
+		rainbowSide3.SetActive (false);
+		rainbowSide4.SetActive (false);
+		rainbowSide5.SetActive (false);
+		rainbowSide6.SetActive (false);
 
 	}
 
