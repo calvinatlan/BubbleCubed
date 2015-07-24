@@ -20,6 +20,7 @@ public class HeartDestroy : MonoBehaviour {
 		if (other.tag == "Player") 
 		{
 			player.healthPoints(25);
+			player.addPoints(100);
 			//AudioSource audio = GetComponent<AudioSource>();
 			//audio.Play();
 			//Destroy (other.gameObject);

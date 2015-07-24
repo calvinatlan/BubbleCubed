@@ -86,6 +86,7 @@ public class Bubble : MonoBehaviour
 		{
 			Destroy (this.gameObject);
 			player.healthPoints(3);
+			player.addPoints(100);
 		}
 		else if (otherR != null) {
 			//If it does, it checks the name and compares it to the color of this bubble
@@ -103,7 +104,7 @@ public class Bubble : MonoBehaviour
 				Destroy (this.gameObject);
 				if(otherS.StartsWith (color.ToString())){
 					player.healthPoints(3);
-					player.addPoints(100);
+					player.addPoints(10);
 				}else if(color==colors.RAINBOW){
 					StartCoroutine (player.turnToRainbow());
 				}
