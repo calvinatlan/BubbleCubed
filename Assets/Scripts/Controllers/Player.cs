@@ -331,7 +331,7 @@ public class Player : MonoBehaviour {
 
 	//-------------------Point scoring functions---------------//
 	//--------------------------------------------------------//
-	public void points(int s){
+	public void healthPoints(int s){
 		sE.clip = pop[Random.Range (0,4)];
 		sE.Play ();
 		counts++;
@@ -345,7 +345,7 @@ public class Player : MonoBehaviour {
 	
 	private int multiplier(){
 		int num;
-		int mult = counts / 10;
+		int mult = (counts-1) / 10;
 		int maxMltiplier = 5;
 		
 		//multiplier 0 through 5
