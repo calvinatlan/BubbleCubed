@@ -223,7 +223,7 @@ public class Player : MonoBehaviour {
 			highStreakText ();
 			counter ();
 			health -= (2 * Time.deltaTime);
-			healthFill.color = Color.Lerp(MinHealthColor, MaxHealthColor, (float)health / 100);
+			healthFill.color = Color.Lerp(MinHealthColor, MaxHealthColor, (float)health / startingHealth);
 			streakFill.color = Color.Lerp (MinStreakColor,MaxStreakColor, (float)counts/highStreak);
 			healthBarInitial ();
 		}
