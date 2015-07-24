@@ -45,6 +45,7 @@ public class Player : MonoBehaviour {
 	public Text countText;
 	public Text streakText;
 	public Text healthBar;
+	public Text scoreText;
 
 	public Slider streakSlider;
 	public Slider healthSlider; 
@@ -220,6 +221,10 @@ public class Player : MonoBehaviour {
 			countText.text = "Count: " + counts.ToString ();
 			streakSlider.value = counts;
 	}
+	void score(){
+		if(canvas != null)
+			scoreText.text = "Score: " + gamePoints.ToString ();
+	}
 
 	void highStreakText(){
 		if(counts > highStreak){
@@ -244,6 +249,7 @@ public class Player : MonoBehaviour {
 		if (canvas != null) {
 			highStreakText ();
 			counter ();
+			score();
 			health -= (2 * Time.deltaTime);
 			healthFill.color = Color.Lerp(MinHealthColor, MaxHealthColor, (float)health / startingHealth);
 			streakFill.color = Color.Lerp (MinStreakColor,MaxStreakColor, (float)counts/highStreak);
