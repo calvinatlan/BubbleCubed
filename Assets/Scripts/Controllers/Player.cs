@@ -46,6 +46,7 @@ public class Player : MonoBehaviour {
 	public Text streakText;
 	public Text healthBar;
 	public Text scoreText;
+	public Text multiplierText;
 
 	public Slider streakSlider;
 	public Slider healthSlider; 
@@ -110,6 +111,7 @@ public class Player : MonoBehaviour {
 		Movement ();
 		Rotate();
 		canvasUpdate ();
+		multiplier ();
 	}
 
 //Made this code simpler, calls moveTo function
@@ -350,17 +352,26 @@ public class Player : MonoBehaviour {
 	}
 	
 	private int multiplier(){
-		int num;
+		int num = 0;
 		int mult = (counts-1) / 10;
 		int maxMltiplier = 5;
 		
 		//multiplier 0 through 5
-		if (mult < maxMltiplier) {
+		if(counts < 11){
+			mult = 0;
+			num = 0;
+			multiplierText.color = Color.clear;
+		}
+		else if (mult < maxMltiplier) {
 			num = mult + 1;
+			multiplierText.text = "x " + mult.ToString ();
+			multiplierText.color = Color.white;
 		} 
 		//multiplier set to max
 		else{
 			num = maxMltiplier;
+			multiplierText.text = "x " + mult.ToString ();
+			multiplierText.color = Color.white;
 		} 
 		
 		return num;
