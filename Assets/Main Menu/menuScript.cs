@@ -6,6 +6,8 @@ public class menuScript : MonoBehaviour {
 
 	public Canvas quitMenu;
 	public Canvas creditMenu;
+	public Canvas scoreMenu;
+
 	public Button startText;
 	public Button exitText;
 	public Button mainMenu;
@@ -15,11 +17,14 @@ public class menuScript : MonoBehaviour {
 
 		quitMenu = quitMenu.GetComponent<Canvas> ();
 		creditMenu = creditMenu.GetComponent<Canvas> ();
+		scoreMenu = scoreMenu.GetComponent<Canvas> ();
+
 		startText = startText.GetComponent<Button> ();
 		exitText = exitText.GetComponent<Button> ();
 		mainMenu = mainMenu.GetComponent<Button> ();
 		quitMenu.enabled = false; //exit menu is disabled
 		creditMenu.enabled = false; //credit menu is disabled
+		scoreMenu.enabled = false;
 	
 	}
 
@@ -39,6 +44,14 @@ public class menuScript : MonoBehaviour {
 		startText.enabled = true;
 		exitText.enabled = true;
 
+	}
+
+	//goes to credit menu
+	public void ScorePress() {
+		
+		scoreMenu.enabled = true;
+		mainMenu.enabled = true;
+		
 	}
 
 	//goes to credit menu
