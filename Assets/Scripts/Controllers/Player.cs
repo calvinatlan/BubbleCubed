@@ -358,19 +358,18 @@ public class Player : MonoBehaviour {
 		
 		//multiplier 0 through 5
 		if(counts < 11){
-			mult = 0;
-			num = 0;
+			num = 1;
 			multiplierText.color = Color.clear;
 		}
 		else if (mult < maxMltiplier) {
 			num = mult + 1;
-			multiplierText.text = "x " + mult.ToString ();
+			multiplierText.text = "x " + num.ToString ();
 			multiplierText.color = Color.white;
 		} 
 		//multiplier set to max
 		else{
 			num = maxMltiplier;
-			multiplierText.text = "x " + mult.ToString ();
+			multiplierText.text = "x " + num.ToString ();
 			multiplierText.color = Color.white;
 		} 
 		
