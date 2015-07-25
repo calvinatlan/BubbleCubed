@@ -12,8 +12,13 @@ public class menuScript : MonoBehaviour {
 	public Button exitText;
 	public Button mainMenu;
 
+	public Text scoreVal0;
+	public Text scoreVal1;
+	public Text scoreVal2;
+
 	// Use this for initialization
 	void Start () {
+
 
 		quitMenu = quitMenu.GetComponent<Canvas> ();
 		creditMenu = creditMenu.GetComponent<Canvas> ();
@@ -51,7 +56,13 @@ public class menuScript : MonoBehaviour {
 		
 		scoreMenu.enabled = true;
 		mainMenu.enabled = true;
+		SaveScore ();
 		
+	}
+	public void SaveScore(){
+		scoreVal0.text = "Score 1: " + PlayerPrefs.GetInt("score0");
+		scoreVal1.text = "Score 2: " + PlayerPrefs.GetInt("score1");
+		scoreVal2.text = "Score 3: " + PlayerPrefs.GetInt("score2");
 	}
 
 	//goes to credit menu

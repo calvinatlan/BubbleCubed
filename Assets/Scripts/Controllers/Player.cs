@@ -271,6 +271,15 @@ public class Player : MonoBehaviour {
 			healthSlider.value = health;
 			healthBar.text = "Game Over";
 
+			if(gamePoints > PlayerPrefs.GetInt("score0")){
+				PlayerPrefs.SetInt("score0", gamePoints);
+			}
+			else if(gamePoints > PlayerPrefs.GetInt("score1")){
+				PlayerPrefs.SetInt("score1", gamePoints);
+			}
+			else if(gamePoints > PlayerPrefs.GetInt("score2")){
+				PlayerPrefs.SetInt("score2", gamePoints);
+			}
 			//gets rid of background text during the deathMenu
 			
 			Destroy(canvas);
