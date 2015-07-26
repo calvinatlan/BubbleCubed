@@ -5,7 +5,7 @@ public class HeartController : MonoBehaviour {
 
 	public float speed;
 
-	void Start()
+	void Update()
 	{
 		//Make bubbles move forward
 		GetComponent<Rigidbody> ().velocity = transform.right * speed * GameController.multiplier;

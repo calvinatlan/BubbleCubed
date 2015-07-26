@@ -12,8 +12,7 @@ public class HeartControllerRainbow : MonoBehaviour {
 	
 	void Start()
 	{
-		//Make bubbles move forward
-		GetComponent<Rigidbody> ().velocity = transform.right * speed * GameController.multiplier;
+
 
 		//Load rainbow animator controller
 		rAni = Resources.Load ("Master Bubble", typeof(RuntimeAnimatorController)) as RuntimeAnimatorController;
@@ -21,8 +20,7 @@ public class HeartControllerRainbow : MonoBehaviour {
 	}
 	void Update()
 	{
-		//animator = this.gameObject.AddComponent<Animator>();
-		//Apply color changing animation 
-		//animator.runtimeAnimatorController = rAni;
+		//Make bubbles move forward
+		GetComponent<Rigidbody> ().velocity = transform.right * speed * GameController.multiplier;
 	}
 }

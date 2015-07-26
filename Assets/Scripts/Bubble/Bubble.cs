@@ -51,11 +51,13 @@ public class Bubble : MonoBehaviour
 		player = cube.GetComponent<Player> ();
 		explode = gameObject.GetComponent<Explode> ();
 
-		//Make bubbles move forward
-		GetComponent<Rigidbody>().velocity = transform.forward * speed * GameController.multiplier;
+
 	}
 
 	void Update(){
+
+		//Make bubbles move forward
+		GetComponent<Rigidbody>().velocity = transform.forward * speed * GameController.multiplier;
 
 		//Change material if color changed
 		if(color != prevColor){
