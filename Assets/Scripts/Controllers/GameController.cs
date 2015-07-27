@@ -71,7 +71,7 @@ public class GameController : MonoBehaviour
 
 			int chooser = rnd.Next (1,1001);
 			int color;
-			if (chooser < 500- (int) difficulty * 300) color = 5;//rnd.Next (1,4);
+			if (chooser < 500- (int) difficulty * 300) color = rnd.Next (1,4);
 			else if (chooser < 940) color = 4;
 			else if (chooser <960- (int) difficulty * 5) color = 5;
 			else if (chooser < 970- (int) difficulty * 10) color = 6;
