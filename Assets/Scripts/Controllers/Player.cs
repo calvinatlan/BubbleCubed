@@ -256,7 +256,21 @@ public class Player : MonoBehaviour {
 			healthFill.color = Color.Lerp(MinHealthColor, MaxHealthColor, (float)health / startingHealth);
 			streakFill.color = Color.Lerp (MinStreakColor,MaxStreakColor, (float)counts/highStreak);
 			healthBarInitial ();
+
+			//Pause button-----------------------
+			if (Input.GetKeyDown ("p")) {
+				if(Time.timeScale == 1){
+					Time.timeScale = 0;
+					music.mute = true;
+				}
+				else{
+					Time.timeScale = 1;
+					music.mute = false;
+				}
+			}
+			//-----------------------------------
 		}
+
 	}
 
 	void healthBarInitial(){
@@ -271,6 +285,7 @@ public class Player : MonoBehaviour {
 			healthSlider.value = health;
 			healthBar.text = "Game Over";
 
+			Destroy(gameObject);
 			if(gamePoints > PlayerPrefs.GetInt("score0")){
 				PlayerPrefs.SetInt("score0", gamePoints);
 			}
