@@ -353,7 +353,9 @@ public class Player : MonoBehaviour {
 		sE.Play ();
 		counts++;
 		totalCount++;
-		health+=s;
+		//added multiplier to help keep your hp up high when on a streak
+		//might need to be balanced
+		health+=s * multiplier();
 	}
 	
 	public void addPoints(int pointsWorth){
