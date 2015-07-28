@@ -369,17 +369,17 @@ public class Player : MonoBehaviour {
 	{
 		notificationText.text = notif;
 		notificationText.color = Color.clear;
-		for (int i=1; i<10; i++) 
+		for (int i=0; i<100; i++) 
 		{
-			notificationText.color = Color.Lerp(Color.clear, Color.white, (float)(i/(10f)));
-			yield return new WaitForSeconds (0.1f);
+			notificationText.color = Color.Lerp(Color.clear, Color.white, (float)(i/(100f)));
+			yield return new WaitForSeconds (0.01f);
 		}
 		notificationText.color = Color.white;
 		yield return new WaitForSeconds (1f);
-		for (int j=1; j<10; j++) 
+		for (int j=0; j<100; j++) 
 		{
-			notificationText.color = Color.Lerp(Color.white, Color.clear, (float)(j/(10f)));
-			yield return new WaitForSeconds (0.1f);
+			notificationText.color = Color.Lerp(Color.white, Color.clear, (float)(j/(100f)));
+			yield return new WaitForSeconds (0.01f);
 		}
 		
 	}
