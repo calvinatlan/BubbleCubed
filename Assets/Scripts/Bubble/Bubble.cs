@@ -107,12 +107,13 @@ public class Bubble : MonoBehaviour
 				if(otherS.StartsWith (color.ToString())){
 					player.healthPoints(3);
 					player.addPoints(10);
+					explode.sd ("good");
 				}else if(color==colors.RAINBOW){
 					StartCoroutine (player.turnToRainbow());
 				}
 				else {
 					player.hurt(5);
-					explode.sd();
+					explode.sd("bad");
 				}
 			}
 
