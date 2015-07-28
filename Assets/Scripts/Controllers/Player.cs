@@ -384,6 +384,24 @@ public class Player : MonoBehaviour {
 		
 	}
 
+	public IEnumerator textFader(Text a)
+	{
+		a.color = Color.clear;
+		for (int i=0; i<100; i++) 
+		{
+			a.color = Color.Lerp(Color.clear, Color.white, (float)(i/(100f)));
+			yield return new WaitForSeconds (0.01f);
+		}
+		a.color = Color.white;
+		yield return new WaitForSeconds (1f);
+		for (int j=0; j<100; j++) 
+		{
+			a.color = Color.Lerp(Color.white, Color.clear, (float)(j/(100f)));
+			yield return new WaitForSeconds (0.01f);
+		}
+		
+	}
+
 	//-------------------Point scoring functions---------------//
 	//--------------------------------------------------------//
 	public void healthPoints(int s){
@@ -409,15 +427,19 @@ public class Player : MonoBehaviour {
 		if(counts < 11){
 			num = 1;
 			multiplierText.color = Color.clear;
+			StopCoroutine (textFader(multiplierText));
 		}
 		else if (mult < maxMltiplier) {
 			num = mult + 1;
 			multiplierText.text = "x " + num.ToString ();
-			multiplierText.color = Color.white;
+			//multiplierText.color = Color.white;
 
 			if((counts -1)%10 == 0){
-				StartCoroutine (notification("x" + num.ToString()));
-				StopCoroutine (notification("x" + num.ToString()));
+				StartCoroutine (textFader(multiplierText));
+				StopCoroutine (textFader(multiplierText));
+
+				StartCoroutine (notification("x" + num.ToString() + " Multiplier Reached!"));
+				StopCoroutine (notification("x" + num.ToString() + " Multiplier Reached!"));
 			}
 		} 
 		//multiplier set to max
