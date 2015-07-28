@@ -47,6 +47,7 @@ public class Player : MonoBehaviour {
 	public Text healthBar;
 	public Text scoreText;
 	public Text multiplierText;
+	public Text notificationText;
 
 	public Slider streakSlider;
 	public Slider healthSlider; 
@@ -78,6 +79,10 @@ public class Player : MonoBehaviour {
 		music.volume = .5F;
 		music.loop = true;
 		music.Play();
+
+		//Sample Notification 
+		StartCoroutine (notification("Sample Notification"));
+		StopCoroutine (notification("Sample Notification"));
 
 		//Create pop audiosource
 		sE = gameObject.AddComponent<AudioSource> ();
@@ -360,6 +365,24 @@ public class Player : MonoBehaviour {
 
 	}
 
+	public IEnumerator notification(string notif)
+	{
+		notificationText.text = notif;
+		notificationText.color = Color.clear;
+		for (int i=1; i<10; i++) 
+		{
+			notificationText.color = Color.Lerp(Color.clear, Color.white, (float)(i/(10f)));
+			yield return new WaitForSeconds (0.1f);
+		}
+		notificationText.color = Color.white;
+		yield return new WaitForSeconds (1f);
+		for (int j=1; j<10; j++) 
+		{
+			notificationText.color = Color.Lerp(Color.white, Color.clear, (float)(j/(10f)));
+			yield return new WaitForSeconds (0.1f);
+		}
+		
+	}
 
 	//-------------------Point scoring functions---------------//
 	//--------------------------------------------------------//
@@ -391,12 +414,19 @@ public class Player : MonoBehaviour {
 			num = mult + 1;
 			multiplierText.text = "x " + num.ToString ();
 			multiplierText.color = Color.white;
+
+			if((counts -1)%10 == 0){
+				StartCoroutine (notification("x" + num.ToString()));
+				StopCoroutine (notification("x" + num.ToString()));
+			}
 		} 
 		//multiplier set to max
 		else{
 			num = maxMltiplier;
 			multiplierText.text = "x " + num.ToString ();
 			multiplierText.color = Color.white;
+
+			notificationText.color = Color.white;
 		} 
 		
 		return num;
