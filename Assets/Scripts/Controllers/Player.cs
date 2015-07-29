@@ -54,6 +54,9 @@ public class Player : MonoBehaviour {
 	public float startingHealth = 100;
 
 	//variables for audio
+	public float gameOverVol;
+	public float gameStartVol;
+	public float popVol;
 	public AudioClip gameOver;
 	public AudioClip gameStart;
 	public AudioClip [] pop = new AudioClip[5];
@@ -76,7 +79,7 @@ public class Player : MonoBehaviour {
 		//Create bgm audiosource
 		music = gameObject.AddComponent<AudioSource> ();
 		music.clip = gameStart;
-		music.volume = .5F;
+		music.volume = gameStartVol;
 		music.loop = true;
 		music.Play();
 
@@ -86,7 +89,7 @@ public class Player : MonoBehaviour {
 
 		//Create pop audiosource
 		sE = gameObject.AddComponent<AudioSource> ();
-		sE.volume = 5f;
+		sE.volume = popVol;
 
 		gamePoints = 0;
 		counts = 0;
@@ -312,7 +315,7 @@ public class Player : MonoBehaviour {
 				music.Stop();
 				music.clip = gameOver;
 				music.loop = true;
-				music.volume = .25f;
+				music.volume = gameOverVol;
 				music.Play();
 			}
 
