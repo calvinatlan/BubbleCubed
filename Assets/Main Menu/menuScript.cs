@@ -16,14 +16,10 @@ public class menuScript : MonoBehaviour {
 	public Text scoreVal1;
 	public Text scoreVal2;
 
-	private AudioSource sE;
-	public AudioClip credits;
-	public float creditsVol;
 
 	// Use this for initialization
 	void Start () {
 
-		sE = gameObject.AddComponent<AudioSource>();
 		quitMenu = quitMenu.GetComponent<Canvas> ();
 		creditMenu = creditMenu.GetComponent<Canvas> ();
 		scoreMenu = scoreMenu.GetComponent<Canvas> ();
@@ -71,9 +67,6 @@ public class menuScript : MonoBehaviour {
 
 	//goes to credit menu
 	public void CreditPress() {
-		sE.clip = credits;
-		sE.volume = creditsVol;
-		sE.Play ();
 		creditMenu.enabled = true;
 		mainMenu.enabled = true;
 
