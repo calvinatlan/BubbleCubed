@@ -151,6 +151,8 @@ public class Player : MonoBehaviour {
 	//m is 0 for left, 1 for right
 	public void moveTo(int m){
 		if (!moving) {
+			sE.clip = laneSwitch;
+			sE.Play();
 			if (m == 1 && curLane != (int)lanes.Right) {
 				pos = transform.position;
 				pTarget = new Vector3 (pos.x + mD, pos.y, pos.z);
