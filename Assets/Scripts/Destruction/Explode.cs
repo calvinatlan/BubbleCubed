@@ -4,9 +4,8 @@ using System.Collections;
 public class Explode : MonoBehaviour{
 
 	//Explosion prefab
-	public GameObject badExplosion;
-
-	public GameObject goodExplosion;
+	private GameObject badExplosion;
+	private GameObject goodExplosion;
 
 	//Color materials
 	private Material[] mat = new Material[10];
@@ -17,6 +16,8 @@ public class Explode : MonoBehaviour{
 		//mat [2] = Resources.Load ("Green", typeof(Material)) as Material;
 		//mat [3] = Resources.Load ("Blue", typeof(Material)) as Material;
 		//mat [4] = Resources.Load ("White", typeof(Material)) as Material;
+		badExplosion = (GameObject) Resources.Load ("Bad Explosion");
+		goodExplosion = (GameObject) Resources.Load ("Good Explosion");
 	}
 
 	public void sd(string s){
