@@ -110,6 +110,7 @@ public class Bubble : MonoBehaviour
 					explode.sd ("good");
 				}else if(color==colors.RAINBOW){
 					StartCoroutine (player.turnToRainbow());
+					player.notificationFunc("RANIBOW!!!");
 				}
 				else {
 					player.hurt(5);

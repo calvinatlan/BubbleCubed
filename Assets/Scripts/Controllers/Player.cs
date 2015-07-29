@@ -367,6 +367,11 @@ public class Player : MonoBehaviour {
 		rainbowSide6.SetActive (false);
 
 	}
+	public void notificationFunc (string s)
+	{
+		StopCoroutine ("notification");
+		StartCoroutine ("notification",s);
+	}
 
 	public IEnumerator notification(string notif)
 	{
@@ -438,11 +443,11 @@ public class Player : MonoBehaviour {
 			//multiplierText.color = Color.white;
 
 			if((counts -1)%10 == 0){
-				StartCoroutine (textFader(multiplierText));
-				StopCoroutine (textFader(multiplierText));
-
-				StartCoroutine (notification("x" + num.ToString() + " Multiplier Reached!"));
-				StopCoroutine (notification("x" + num.ToString() + " Multiplier Reached!"));
+				StopCoroutine ("textFader");
+				StartCoroutine ("textFader",multiplierText);
+				
+				StopCoroutine ("notification");
+				StartCoroutine ("notification","x" + num.ToString() + " Multiplier Reached!");
 			}
 		} 
 		//multiplier set to max
