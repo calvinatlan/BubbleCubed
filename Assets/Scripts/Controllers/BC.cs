@@ -18,7 +18,7 @@ public class BC : MonoBehaviour {
 	void Update () {
 	
 		if (Input.GetKeyUp	("space")) {
-			createBubble (6); //7
+			createBubble (7); //7
 		}
 	}
 
