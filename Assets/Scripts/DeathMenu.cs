@@ -12,7 +12,9 @@ public class DeathMenu : MonoBehaviour {
 	public Text wrong;
 	public GameObject cube;
 	private Player player;
-
+	private AudioSource sE;
+	public AudioClip laughter;
+	public float laughterVol;
 	// Use this for initialization
 	void Start () {
 		deathMenu = this.gameObject.GetComponent<Canvas>();
@@ -22,11 +24,14 @@ public class DeathMenu : MonoBehaviour {
 		replay = replay.GetComponent<Button> ();
 		correct = correct.GetComponent<Text> ();
 		wrong = wrong.GetComponent<Text> ();
-
+		sE = gameObject.AddComponent<AudioSource> ();
 	}
 	public void cubeDestroyed(){
 		correct.text = "Total Bubbles Collected: " + player.totalCount.ToString();
 		wrong.text = "Total Wrong Bubbles: " + player.totalWrong.ToString();
+		sE.clip = laughter;
+		sE.volume = laughterVol;
+		sE.Play ();
 		deathMenu.enabled = true;
 	}
 	public void menuPress(){
