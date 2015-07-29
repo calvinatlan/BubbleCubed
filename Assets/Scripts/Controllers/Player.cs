@@ -56,10 +56,12 @@ public class Player : MonoBehaviour {
 	//variables for audio
 	public float gameOverVol;
 	public float gameStartVol;
-	public float popVol;
+	public float seVol;
 	public AudioClip gameOver;
 	public AudioClip gameStart;
 	public AudioClip [] pop = new AudioClip[5];
+	public AudioClip laneSwitch;
+	public AudioClip [] rotate = new AudioClip[2];
 	private AudioSource music;
 	private AudioSource sE;
 
@@ -89,7 +91,7 @@ public class Player : MonoBehaviour {
 
 		//Create pop audiosource
 		sE = gameObject.AddComponent<AudioSource> ();
-		sE.volume = popVol;
+		sE.volume = seVol;
 
 		gamePoints = 0;
 		counts = 0;
@@ -170,6 +172,8 @@ public class Player : MonoBehaviour {
 	//r is 0 for left, 1 for up, 2 for right, 3 for down
 	public void rotateTo(int r){
 		if (!rotating) {
+			sE.clip = rotate[Random.Range (0,1)];
+			sE.Play ();
 			if (r == 0) {
 				rot = transform.rotation;
 				cAxis = Quaternion.Inverse (rot) * Vector3.down;
