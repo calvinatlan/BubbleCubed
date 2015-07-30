@@ -88,7 +88,7 @@ public class Bubble : MonoBehaviour
 		{
 			Destroy (this.gameObject);
 			player.healthPoints(3);
-			player.addPoints(100);
+			player.addPoints(10);
 		}
 		else if (otherR != null) {
 			//If it does, it checks the name and compares it to the color of this bubble
