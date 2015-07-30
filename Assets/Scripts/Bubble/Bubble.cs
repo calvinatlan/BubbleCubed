@@ -87,6 +87,8 @@ public class Bubble : MonoBehaviour
 		if (player.getRainbow())
 		{
 			Destroy (this.gameObject);
+			//when in rainbow bubble mode, all bubbles are "good" explosions
+			explode.sd ("good");
 			player.healthPoints(3);
 			player.addPoints(10);
 		}
