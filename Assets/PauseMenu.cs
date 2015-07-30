@@ -15,24 +15,21 @@ public class PauseMenu : MonoBehaviour {
 		pauseMenu = this.gameObject.GetComponent<Canvas>();
 		pauseMenu.enabled = false;
 		player = cube.GetComponent<Player>();
-		mainMenu = mainMenu.GetComponent<Button> ();
-		unpause = unpause.GetComponent<Button> ();
+		//mainMenu = mainMenu.GetComponent<Button> ();
+		//unpause = unpause.GetComponent<Button> ();
 
 	}
 	public void usePauseMenu(){
-		if(Time.timeScale == 1){
-			Time.timeScale = 0;
-			pauseMenu.enabled = true;
-			//music.mute = true;
-		}
+
+		pauseMenu.enabled = true;
+
 	
 	}
 	public void useUnpauseMenu(){
-		if(Time.timeScale == 0){
-			Time.timeScale = 1;
-			pauseMenu.enabled = false;
+
+		pauseMenu.enabled = false;
 			//music.mute = true;
-		}
+
 	}
 	public void menuPress(){
 		Application.LoadLevel(0);

@@ -95,6 +95,8 @@ public class Player : MonoBehaviour {
 		//Sample Notification 
 		StartCoroutine (notification("Welcome to Bubble Cubed!"));
 
+		Time.timeScale = 1;
+
 		//Create pop audiosource
 		sE = gameObject.AddComponent<AudioSource> ();
 		sE.volume = seVol;
@@ -280,6 +282,20 @@ public class Player : MonoBehaviour {
 			healthBarInitial ();
 
 			pause();
+			//Pause button-----------------------
+//			if (Input.GetKeyDown ("p")) {
+//				if(Time.timeScale == 1){
+//					Time.timeScale = 0;
+//					music.mute = true;
+//					//pause1.usePauseMenu();
+//				}
+//				else{
+//					Time.timeScale = 1;
+//					music.mute = false;
+//					//pause1.useUnpauseMenu();
+//				}
+//			}
+//			//-----------------------------------	
 		}
 
 	}
@@ -289,12 +305,12 @@ public class Player : MonoBehaviour {
 		//Pause button-----------------------
 		if (Input.GetKeyDown ("p")) {
 			if(Time.timeScale == 1){
-				//Time.timeScale = 0;
+				Time.timeScale = 0;
 				music.mute = true;
 				pause1.usePauseMenu();
 			}
 			else{
-				//Time.timeScale = 1;
+				Time.timeScale = 1;
 				music.mute = false;
 				pause1.useUnpauseMenu();
 			}
