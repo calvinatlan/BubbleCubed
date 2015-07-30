@@ -62,7 +62,7 @@ public class Player : MonoBehaviour {
 	public AudioClip [] pop = new AudioClip[5];
 	public AudioClip laneSwitch;
 	public AudioClip [] rotate = new AudioClip[2];
-	private AudioSource music;
+	public AudioSource music;
 	private AudioSource sE;
 
 	public Image healthFill;
@@ -76,6 +76,10 @@ public class Player : MonoBehaviour {
 	//DeathMenu
 	public GameObject canvas;
 	public GameObject canvas2;
+
+	//PauseMenu
+	public GameObject canvas3;
+	
 	// Use this for initialization
 	void Start () {
 		//Create bgm audiosource
@@ -86,8 +90,7 @@ public class Player : MonoBehaviour {
 		music.Play();
 
 		//Sample Notification 
-		StartCoroutine (notification("Sample Notification"));
-		StopCoroutine (notification("Sample Notification"));
+		StartCoroutine (notification("Welcome to Bubble Cubed!"));
 
 		//Create pop audiosource
 		sE = gameObject.AddComponent<AudioSource> ();
@@ -271,20 +274,27 @@ public class Player : MonoBehaviour {
 			streakFill.color = Color.Lerp (MinStreakColor,MaxStreakColor, (float)counts/highStreak);
 			healthBarInitial ();
 
-			//Pause button-----------------------
-			if (Input.GetKeyDown ("p")) {
-				if(Time.timeScale == 1){
-					Time.timeScale = 0;
-					music.mute = true;
-				}
-				else{
-					Time.timeScale = 1;
-					music.mute = false;
-				}
-			}
-			//-----------------------------------
+			pause();
 		}
 
+	}
+
+	public void pause(){
+		PauseMenu pause1 = (PauseMenu) canvas3.GetComponent("PauseMenu");
+		//Pause button-----------------------
+		if (Input.GetKeyDown ("p")) {
+			if(Time.timeScale == 1){
+				//Time.timeScale = 0;
+				music.mute = true;
+				pause1.usePauseMenu();
+			}
+			else{
+				//Time.timeScale = 1;
+				music.mute = false;
+				pause1.useUnpauseMenu();
+			}
+		}
+		//-----------------------------------		
 	}
 
 	void healthBarInitial(){
