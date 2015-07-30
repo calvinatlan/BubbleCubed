@@ -79,6 +79,9 @@ public class Player : MonoBehaviour {
 
 	//PauseMenu
 	public GameObject canvas3;
+
+	//For explosion effect
+	private GameObject explosionCube;
 	
 	// Use this for initialization
 	void Start () {
@@ -116,6 +119,8 @@ public class Player : MonoBehaviour {
 		rainbowSide5.SetActive (false);
 		rainbowSide6 =  GameObject.FindGameObjectWithTag ("Rainbow Side 6");
 		rainbowSide6.SetActive (false);
+
+		explosionCube = (GameObject)Resources.Load ("Cube Explosion");
 	}
 
 	
@@ -320,7 +325,9 @@ public class Player : MonoBehaviour {
 				PlayerPrefs.SetInt("score2", gamePoints);
 			}
 			//gets rid of background text during the deathMenu
-			
+
+			Instantiate (explosionCube, transform.position, transform.rotation);
+
 			Destroy(canvas);
 
 			DeathMenu menu = (DeathMenu) canvas2.GetComponent("DeathMenu");
