@@ -6,18 +6,11 @@ public class PauseMenu : MonoBehaviour {
 
 	private Canvas pauseMenu;
 	public Button unpause;
-	public Button mainMenu;
-	public GameObject cube;
-	private Player player;
 
 	// Use this for initialization
 	void Start () {
 		pauseMenu = this.gameObject.GetComponent<Canvas>();
 		pauseMenu.enabled = false;
-		player = cube.GetComponent<Player>();
-		//mainMenu = mainMenu.GetComponent<Button> ();
-		//unpause = unpause.GetComponent<Button> ();
-
 	}
 	public void usePauseMenu(){
 
