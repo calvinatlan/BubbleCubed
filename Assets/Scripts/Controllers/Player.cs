@@ -59,6 +59,8 @@ public class Player : MonoBehaviour {
 	public float seVol;
 	public AudioClip gameOver;
 	public AudioClip gameStart;
+	public AudioClip rainbowSong;
+	public AudioClip rainbow;
 	public AudioClip laneSwitch;
 	public AudioClip [] rotate = new AudioClip[2];
 	public AudioSource music;
@@ -383,6 +385,11 @@ public class Player : MonoBehaviour {
 	{
 		isRainbow = true;
 		if (GameController.multiplier<2) GameController.multiplier++;
+		//play rainbow song
+		music.clip = rainbowSong;
+		music.Play ();
+		sE.clip = rainbow;
+		sE.Play ();
 		rainbowSide1.SetActive (true);
 		rainbowSide2.SetActive (true);
 		rainbowSide3.SetActive (true);
@@ -394,6 +401,7 @@ public class Player : MonoBehaviour {
 	}
 	public IEnumerator waitAndThen()
 	{
+
 		yield return new WaitForSeconds (5);
 		if (GameController.multiplier==2)GameController.multiplier--;
 		isRainbow = false;
@@ -403,6 +411,9 @@ public class Player : MonoBehaviour {
 		rainbowSide4.SetActive (false);
 		rainbowSide5.SetActive (false);
 		rainbowSide6.SetActive (false);
+		//resume playing game music
+		music.clip = gameStart;
+		music.Play ();
 
 	}
 	public void notificationFunc (string s)
