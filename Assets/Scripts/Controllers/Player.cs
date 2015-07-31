@@ -59,7 +59,6 @@ public class Player : MonoBehaviour {
 	public float seVol;
 	public AudioClip gameOver;
 	public AudioClip gameStart;
-	public AudioClip [] pop = new AudioClip[5];
 	public AudioClip laneSwitch;
 	public AudioClip [] rotate = new AudioClip[2];
 	public AudioSource music;
@@ -452,8 +451,7 @@ public class Player : MonoBehaviour {
 	//-------------------Point scoring functions---------------//
 	//--------------------------------------------------------//
 	public void healthPoints(int s){
-		sE.clip = pop[Random.Range (0,4)];
-		sE.Play ();
+
 		counts++;
 		totalCount++;
 		//added multiplier to help keep your hp up high when on a streak
