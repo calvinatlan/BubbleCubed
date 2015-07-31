@@ -63,8 +63,9 @@ public class Player : MonoBehaviour {
 	public AudioClip rainbow;
 	public AudioClip laneSwitch;
 	public AudioClip [] rotate = new AudioClip[2];
-	public AudioSource music;
+	private AudioSource music;
 	private AudioSource sE;
+	private AudioSource voice;
 
 	public Image healthFill;
 	public Color MaxHealthColor = Color.green;
@@ -101,6 +102,9 @@ public class Player : MonoBehaviour {
 		//Create pop audiosource
 		sE = gameObject.AddComponent<AudioSource> ();
 		sE.volume = seVol;
+		voice = gameObject.AddComponent<AudioSource> ();
+		voice.volume = seVol;
+		voice.clip = rainbow;
 
 		gamePoints = 0;
 		counts = 0;
@@ -388,8 +392,7 @@ public class Player : MonoBehaviour {
 		//play rainbow song
 		music.clip = rainbowSong;
 		music.Play ();
-		sE.clip = rainbow;
-		sE.Play ();
+		voice.Play ();
 		rainbowSide1.SetActive (true);
 		rainbowSide2.SetActive (true);
 		rainbowSide3.SetActive (true);
