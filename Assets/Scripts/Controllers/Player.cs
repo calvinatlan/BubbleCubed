@@ -59,11 +59,13 @@ public class Player : MonoBehaviour {
 	public float seVol;
 	public AudioClip gameOver;
 	public AudioClip gameStart;
-	public AudioClip [] pop = new AudioClip[5];
+	public AudioClip rainbowSong;
+	public AudioClip rainbow;
 	public AudioClip laneSwitch;
 	public AudioClip [] rotate = new AudioClip[2];
-	public AudioSource music;
+	private AudioSource music;
 	private AudioSource sE;
+	private AudioSource voice;
 
 	public Image healthFill;
 	public Color MaxHealthColor = Color.green;
@@ -100,6 +102,9 @@ public class Player : MonoBehaviour {
 		//Create pop audiosource
 		sE = gameObject.AddComponent<AudioSource> ();
 		sE.volume = seVol;
+		voice = gameObject.AddComponent<AudioSource> ();
+		voice.volume = seVol;
+		voice.clip = rainbow;
 
 		gamePoints = 0;
 		counts = 0;
@@ -384,6 +389,10 @@ public class Player : MonoBehaviour {
 	{
 		isRainbow = true;
 		if (GameController.multiplier<2) GameController.multiplier++;
+		//play rainbow song
+		music.clip = rainbowSong;
+		music.Play ();
+		voice.Play ();
 		rainbowSide1.SetActive (true);
 		rainbowSide2.SetActive (true);
 		rainbowSide3.SetActive (true);
@@ -395,6 +404,7 @@ public class Player : MonoBehaviour {
 	}
 	public IEnumerator waitAndThen()
 	{
+
 		yield return new WaitForSeconds (5);
 		if (GameController.multiplier==2)GameController.multiplier--;
 		isRainbow = false;
@@ -404,6 +414,9 @@ public class Player : MonoBehaviour {
 		rainbowSide4.SetActive (false);
 		rainbowSide5.SetActive (false);
 		rainbowSide6.SetActive (false);
+		//resume playing game music
+		music.clip = gameStart;
+		music.Play ();
 
 	}
 	public void notificationFunc (string s)
@@ -452,8 +465,7 @@ public class Player : MonoBehaviour {
 	//-------------------Point scoring functions---------------//
 	//--------------------------------------------------------//
 	public void healthPoints(int s){
-		sE.clip = pop[Random.Range (0,4)];
-		sE.Play ();
+
 		counts++;
 		totalCount++;
 		//added multiplier to help keep your hp up high when on a streak

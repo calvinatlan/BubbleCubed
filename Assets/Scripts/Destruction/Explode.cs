@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
-
 public class Explode : MonoBehaviour{
 
 	//Explosion prefab
@@ -16,6 +16,7 @@ public class Explode : MonoBehaviour{
 		//mat [2] = Resources.Load ("Green", typeof(Material)) as Material;
 		//mat [3] = Resources.Load ("Blue", typeof(Material)) as Material;
 		//mat [4] = Resources.Load ("White", typeof(Material)) as Material;
+
 		badExplosion = (GameObject) Resources.Load ("Bad Explosion");
 		goodExplosion = (GameObject) Resources.Load ("Good Explosion");
 	}
@@ -23,7 +24,8 @@ public class Explode : MonoBehaviour{
 	public void sd(string s){
 		if (s.Contains("bad")) {
 			Instantiate (badExplosion, transform.position, transform.rotation);
-		} else if (s.Contains("good")) {
+		} 
+		else if (s.Contains("good")) {
 			Instantiate (goodExplosion, transform.position, transform.rotation);
 		}
 		Destroy (this.gameObject);
