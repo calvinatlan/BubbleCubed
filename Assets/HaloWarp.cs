@@ -12,5 +12,6 @@ public class HaloWarp : MonoBehaviour {
 	void LateUpdate ()
 	{
 		//GetComponent<Halo>().size = 4;
+		transform.GetComponent<Light>().intensity = Mathf.Abs(Mathf.Sin(Time.time));
 	}
 }
