@@ -320,8 +320,26 @@ public class Player : MonoBehaviour {
 				pause1.useUnpauseMenu();
 			}
 		}
-		//-----------------------------------		
+		//-----------------------------------
+
 	}
+
+	public void buttonpause(){
+		PauseMenu pause1 = (PauseMenu) canvas3.GetComponent("PauseMenu");
+
+		if(Time.timeScale == 1){
+			Time.timeScale = 0;
+			music.mute = true;
+			pause1.usePauseMenu();
+		}
+		if(Time.timeScale == 0){
+			Time.timeScale = 1;
+			music.mute = false;
+			pause1.useUnpauseMenu();
+		}
+
+		
+	}          
 
 	void healthBarInitial(){
 		num = (int)health;

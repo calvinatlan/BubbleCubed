@@ -13,17 +13,27 @@ public class PauseMenu : MonoBehaviour {
 		pauseMenu.enabled = false;
 	}
 	public void usePauseMenu(){
-
-		pauseMenu.enabled = true;
-
+		if (pauseMenu.enabled == false) {
+			pauseMenu.enabled = true;
+			Time.timeScale = 0;
+			AudioListener.pause = true;
+		}
+		else {
+			pauseMenu.enabled = false;
+			Time.timeScale = 1;
+			AudioListener.pause = false;
+		}
 	
 	}
 	public void useUnpauseMenu(){
 
 		pauseMenu.enabled = false;
-			//music.mute = true;
-
+		
 	}
+
+
+
+
 	public void menuPress(){
 		Application.LoadLevel(0);
 	}	
