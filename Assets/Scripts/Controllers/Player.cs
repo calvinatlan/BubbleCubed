@@ -318,6 +318,7 @@ public class Player : MonoBehaviour {
 				Time.timeScale = 1;
 				music.mute = false;
 				pause1.useUnpauseMenu();
+				AudioListener.pause = false;
 			}
 		}
 		//-----------------------------------
