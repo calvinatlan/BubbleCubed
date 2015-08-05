@@ -66,6 +66,7 @@ public class Player : MonoBehaviour {
 	private AudioSource music;
 	private AudioSource sE;
 	private AudioSource voice;
+	private AudioSource music2;
 
 	public Image healthFill;
 	public Color MaxHealthColor = Color.green;
@@ -93,7 +94,8 @@ public class Player : MonoBehaviour {
 		music.volume = gameStartVol;
 		music.loop = true;
 		music.Play();
-
+		music2 = gameObject.AddComponent<AudioSource> ();
+		music2.clip = rainbowSong;
 		//Sample Notification 
 		StartCoroutine (notification("Welcome to Bubble Cubed!"));
 
@@ -409,8 +411,8 @@ public class Player : MonoBehaviour {
 		isRainbow = true;
 		if (GameController.multiplier<2) GameController.multiplier++;
 		//play rainbow song
-		music.clip = rainbowSong;
-		music.Play ();
+		music.Pause ();
+		music2.Play ();
 		voice.Play ();
 		rainbowSide1.SetActive (true);
 		rainbowSide2.SetActive (true);
@@ -434,8 +436,8 @@ public class Player : MonoBehaviour {
 		rainbowSide5.SetActive (false);
 		rainbowSide6.SetActive (false);
 		//resume playing game music
-		music.clip = gameStart;
-		music.Play ();
+		music2.Stop ();
+		music.UnPause ();
 
 	}
 	public void notificationFunc (string s)
