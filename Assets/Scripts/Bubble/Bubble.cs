@@ -48,7 +48,9 @@ public class Bubble : MonoBehaviour
 
 		//Load scripts
 		cube = GameObject.FindGameObjectWithTag ("Player");
-		player = cube.GetComponent<Player> ();
+		if (Player.isAlive) {
+			player = cube.GetComponent<Player> ();
+		}
 		explode = gameObject.GetComponent<Explode> ();
 
 
@@ -80,11 +82,13 @@ public class Bubble : MonoBehaviour
 		}
 	}
 
+
+
 	void OnTriggerEnter(Collider other){
 
 
 		Renderer otherR = other.gameObject.GetComponent<Renderer> ();
-		if (player.getRainbow())
+		if (Player.isAlive && player.getRainbow())
 		{
 			Destroy (this.gameObject);
 			//when in rainbow bubble mode, all bubbles are "good" explosions

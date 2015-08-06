@@ -4,6 +4,7 @@ using System.Collections;
 
 public class Player : MonoBehaviour {
 
+	public static bool isAlive;
 	//How far the cube moves
 	public float mD;
 	//How long the cube takes to switch lanes
@@ -89,6 +90,7 @@ public class Player : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		//Create bgm audiosource
+		isAlive = true;
 		music = gameObject.AddComponent<AudioSource> ();
 		music.clip = gameStart;
 		music.volume = gameStartVol;
@@ -356,6 +358,7 @@ public class Player : MonoBehaviour {
 			healthSlider.value = health;
 			healthBar.text = "Game Over";
 
+			isAlive = false;
 			Destroy(gameObject);
 			if(gamePoints > PlayerPrefs.GetInt("score0")){
 				PlayerPrefs.SetInt("score0", gamePoints);
