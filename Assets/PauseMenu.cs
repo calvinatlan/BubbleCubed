@@ -35,6 +35,7 @@ public class PauseMenu : MonoBehaviour {
 
 
 	public void menuPress(){
+		AudioListener.pause = true;
 		Application.LoadLevel(0);
 	}	
 	// Update is called once per frame

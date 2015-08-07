@@ -35,6 +35,7 @@ public class DeathMenu : MonoBehaviour {
 		deathMenu.enabled = true;
 	}
 	public void menuPress(){
+		AudioListener.pause = false;
 		Application.LoadLevel(0);
 	}
 	public void replayPress(){
