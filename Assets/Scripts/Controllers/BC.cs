@@ -17,8 +17,14 @@ public class BC : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	
-		if (Input.GetKeyUp	("space")) {
+		if (Input.GetKeyUp ("5")) { 
+			createBubble (5);
+		}
+		if (Input.GetKeyUp ("6")) {
 			createBubble (6);
+		}
+		if (Input.GetKeyUp	("7")) {
+			createBubble (7);
 		}
 	}
 
