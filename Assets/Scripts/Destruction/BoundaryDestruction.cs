@@ -13,7 +13,11 @@ public class BoundaryDestruction : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other){
 //		print (other);
-		Destroy (other.gameObject);
+		if (other.tag == "Lane") 
+		{
+			other.transform.position = new Vector3(0,-1, 23.7f);
+		}
+		else Destroy (other.gameObject);
 
 	}
 }
