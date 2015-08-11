@@ -18,6 +18,8 @@ public class GameController : MonoBehaviour
 	public float startWait;
 	public float bubbleCount;
 
+
+
 	//to assimptotically approach 1, update calculation every second? 
 	public static double difficulty = 0.05;
 
