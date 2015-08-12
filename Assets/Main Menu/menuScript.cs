@@ -88,13 +88,11 @@ public class menuScript : MonoBehaviour {
 
 	//press yes to exit game
 	public void ExitGame() {
-		if(Application.platform == RuntimePlatform.WindowsWebPlayer){
-			Application.OpenURL("http://www.bubblecubed.xyz/");
+		if(Application.platform == RuntimePlatform.Android){
+			Application.Quit ();
 		}	
-		else if(Application.platform == RuntimePlatform.OSXWebPlayer){
+		else{
 			Application.OpenURL("http://www.bubblecubed.xyz/");
 		}
-		else Application.Quit ();
 	}
-
 }
