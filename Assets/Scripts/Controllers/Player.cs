@@ -236,6 +236,8 @@ public class Player : MonoBehaviour {
 			transform.position = Vector3.Slerp (pos, pTarget, track);
 			yield return null;
 		}
+		//change value in order to change the lag for changing lane
+		yield return new WaitForSeconds (0.13f);
 		moving = false;
 	}
 
