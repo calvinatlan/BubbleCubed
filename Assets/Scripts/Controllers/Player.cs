@@ -132,6 +132,10 @@ public class Player : MonoBehaviour {
 		rainbowSide6.SetActive (false);
 
 		explosionCube = (GameObject)Resources.Load ("Cube Explosion");
+
+		startingHealth += 1;
+		health = startingHealth;
+
 	}
 
 	
@@ -561,7 +565,7 @@ public class Player : MonoBehaviour {
 	
 	public void startHealthUp(){
 		
-		if (startingHealth <= 190) 
+		if (startingHealth <= 200) 
 		{
 			startingHealth += 10;
 			health = startingHealth;
