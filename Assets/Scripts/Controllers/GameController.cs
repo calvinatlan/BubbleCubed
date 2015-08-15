@@ -21,7 +21,7 @@ public class GameController : MonoBehaviour
 
 
 	//to assimptotically approach 1, update calculation every second? 
-	public static double difficulty = 0.05;
+	public static float difficulty = 0.05f;
 
 	public float spawnWait;
 	public float waveWait;
@@ -88,7 +88,7 @@ public class GameController : MonoBehaviour
 	//assymptotically increases the difficulty to 1
 	IEnumerator IncreaseDifficulty ()
 	{
-		difficulty = 1 - ((1 - difficulty) / 1.2);
+		difficulty = 1f - ((1f - difficulty) / 1.2f);
 		yield return new WaitForSeconds (0.05f);
 	}
 

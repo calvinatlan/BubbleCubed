@@ -237,7 +237,7 @@ public class Player : MonoBehaviour {
 			yield return null;
 		}
 		//change value in order to change the lag for changing lane
-		yield return new WaitForSeconds (0.13f);
+		yield return new WaitForSeconds (0.125f);
 		moving = false;
 	}
 
@@ -414,7 +414,7 @@ public class Player : MonoBehaviour {
 	public IEnumerator turnToRainbow ()
 	{
 		isRainbow = true;
-		if (GameController.multiplier<2) GameController.multiplier++;
+		GameController.multiplier++;
 		//play rainbow song
 		music.Pause ();
 		music2.Play ();
@@ -432,7 +432,7 @@ public class Player : MonoBehaviour {
 	{
 
 		yield return new WaitForSeconds (5);
-		if (GameController.multiplier==2)GameController.multiplier--;
+		GameController.multiplier--;
 		isRainbow = false;
 		rainbowSide1.SetActive (false);
 		rainbowSide2.SetActive (false);
@@ -498,9 +498,19 @@ public class Player : MonoBehaviour {
 		//might need to be balanced
 		health+=s * multiplier();
 	}
-	
+	private void increaseSpeed(int prev){
+		float num = GameController.multiplier;
+		if (prev < 3000 && gamePoints >= 3000)
+			GameController.multiplier = num + .5f;
+		else if (prev < 1500 && gamePoints >= 1500)
+			GameController.multiplier = num + .25f;
+		else if (prev < 500 && gamePoints >= 500)
+			GameController.multiplier = num + .25f;
+	}
 	public void addPoints(int pointsWorth){
+		int prev = gamePoints;
 		gamePoints += pointsWorth * multiplier();
+		increaseSpeed (prev);
 	}
 	
 	private int multiplier(){
