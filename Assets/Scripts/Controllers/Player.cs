@@ -500,16 +500,22 @@ public class Player : MonoBehaviour {
 	}
 	private void increaseSpeed(int prev){
 		float num = GameController.multiplier;
-		if (prev < 10000 && gamePoints >= 10000)
+		if (prev < 10000 && gamePoints >= 10000) {
 			GameController.multiplier = num + .4f;
-		else if (prev < 5000 && gamePoints >= 5000)
+			notificationFunc ("Speed Up!");
+		} else if (prev < 5000 && gamePoints >= 5000) {
 			GameController.multiplier = num + .25f;
-		else if (prev < 3000 && gamePoints >= 3000)
-			GameController.multiplier = num + .25f; 
-		else if (prev < 1500 && gamePoints >= 1500)
+			notificationFunc ("Speed Up!");
+		} else if (prev < 3000 && gamePoints >= 3000) {
 			GameController.multiplier = num + .25f;
-		else if (prev < 500 && gamePoints >= 500)
+			notificationFunc ("Speed Up!");
+		} else if (prev < 1500 && gamePoints >= 1500) {
 			GameController.multiplier = num + .25f;
+			notificationFunc ("Speed Up!");
+		} else if (prev < 500 && gamePoints >= 500) {
+			GameController.multiplier = num + .25f;
+			notificationFunc ("Speed Up!");
+		}
 	}
 	public void addPoints(int pointsWorth){
 		int prev = gamePoints;
