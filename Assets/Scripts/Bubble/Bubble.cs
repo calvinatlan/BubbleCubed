@@ -88,43 +88,45 @@ public class Bubble : MonoBehaviour
 
 
 		Renderer otherR = other.gameObject.GetComponent<Renderer> ();
-		if (Player.isAlive && player.getRainbow())
-		{
-			Destroy (this.gameObject);
-			//when in rainbow bubble mode, all bubbles are "good" explosions
-			explode.sd ("good");
-			player.healthPoints(3);
-			player.addPoints(10);
-		}
-		else if (otherR != null) {
-			//If it does, it checks the name and compares it to the color of this bubble
-			string otherS = otherR.material.name.ToUpper ();
-
-			//make sure it matches at least 1 enum, otherwise, don't destroy bubble
-			bool isColored = false;
-			foreach(var i in System.Enum.GetValues(typeof(colors))){
-				if (otherS.StartsWith (i.ToString())){
-					isColored = true;
-				}
-			}
-			//Destroy object and do score things if it's true
-			if (isColored == true){
+		if (otherR != null) {
+			if (Player.isAlive && player.getRainbow())
+			{
 				Destroy (this.gameObject);
-				if(otherS.StartsWith (color.ToString())){
-					player.healthPoints(3);
-					player.addPoints(10);
-					explode.sd ("good");
-				}else if(color==colors.RAINBOW){
-					StartCoroutine (player.turnToRainbow());
-					player.notificationFunc("Rainbow! Catch all the bubbles!");
+				//when in rainbow bubble mode, all bubbles are "good" explosions
+				explode.sd ("good");
+				player.healthPoints(3);
+				player.addPoints(10);
+			}
+			else {
+				//If it does, it checks the name and compares it to the color of this bubble
+				string otherS = otherR.material.name.ToUpper ();
+				
+				//make sure it matches at least 1 enum, otherwise, don't destroy bubble
+				bool isColored = false;
+				foreach(var i in System.Enum.GetValues(typeof(colors))){
+					if (otherS.StartsWith (i.ToString())){
+						isColored = true;
+					}
 				}
-				else {
-					player.hurt(5);
-					explode.sd("bad");
+				//Destroy object and do score things if it's true
+				if (isColored == true){
+					Destroy (this.gameObject);
+					if(otherS.StartsWith (color.ToString())){
+						player.healthPoints(3);
+						player.addPoints(10);
+						explode.sd ("good");
+					}else if(color==colors.RAINBOW){
+						StartCoroutine (player.turnToRainbow());
+						player.notificationFunc("Rainbow! Catch all the bubbles!");
+					}
+					else {
+						player.hurt(5);
+						explode.sd("bad");
+					}
 				}
 			}
-
 		}
+
 	}
 	
 	//---------------------------------------------------------------//
