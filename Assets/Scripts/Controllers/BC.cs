@@ -72,7 +72,7 @@ public class BC : MonoBehaviour {
 			
 			GameObject bub = (GameObject)Instantiate (bubble, spawnPosition, spawnRotation);
 			bub.GetComponent<Bubble> ().setColor (x);
-
+			gameObject.tag = "Bubble";
 
 		}
 
