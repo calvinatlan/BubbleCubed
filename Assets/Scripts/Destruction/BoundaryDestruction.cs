@@ -15,7 +15,7 @@ public class BoundaryDestruction : MonoBehaviour {
 //		print (other);
 		if (other.tag == "Lane") 
 		{
-			other.transform.position = new Vector3(0,-1, 23.7f);
+			other.transform.position = new Vector3(0,-1, 22.7f);
 		}
 		else Destroy (other.gameObject);
 
