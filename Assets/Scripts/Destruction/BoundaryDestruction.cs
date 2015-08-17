@@ -15,7 +15,12 @@ public class BoundaryDestruction : MonoBehaviour {
 //		print (other);
 		if (other.tag == "Lane") 
 		{
-			other.transform.position = new Vector3(0,-1, 22.7f);
+			GameObject temp = GameObject.FindGameObjectWithTag ("Last Lane");
+			Transform n = temp.transform;
+			float nz = n.position.z;
+			temp.tag = ("Lane");
+			other.transform.position = new Vector3(0,-1, nz+1f);
+			other.tag = ("Last Lane");
 		}
 		else Destroy (other.gameObject);
 
