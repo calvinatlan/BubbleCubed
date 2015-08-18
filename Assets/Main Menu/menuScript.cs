@@ -90,7 +90,10 @@ public class menuScript : MonoBehaviour {
 	public void ExitGame() {
 		if(Application.platform == RuntimePlatform.Android){
 			Application.Quit ();
-		}	
+		}
+		else if(Application.platform == RuntimePlatform.WindowsPlayer){
+			Application.Quit ();
+		}
 		else{
 			Application.OpenURL("http://www.bubblecubed.xyz/");
 		}
